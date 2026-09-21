@@ -5401,7 +5401,10 @@
       });
       document.getElementById('main-nav').classList.remove('open');
       window.scrollTo({ top: 0, behavior: 'auto' });
-      history.replaceState(null, '', '#' + id);
+      var activeFilter = id === 'school-uniforms' && document.querySelector('#page-school-uniforms .filter-tab.active');
+      var categoryHash = activeFilter && activeFilter.dataset.filter !== 'all'
+        ? '?category=' + encodeURIComponent(activeFilter.dataset.filter) : '';
+      history.replaceState(null, '', '#' + id + categoryHash);
       moveIndicator(id);
       scanReveals();
     }
@@ -5429,9 +5432,19 @@
       b.addEventListener('click', function () { go(b.dataset.nav); });
     });
 
-    var initial = (location.hash || '#home').replace('#', '');
-    var valid = ['home', 'about', 'process', 'products', 'catalogue', 'contact', 'summer-uniforms', 'winter-uniforms', 'sport-uniforms', 'accessories-uniforms', 'hospitality-uniforms', 'healthcare-uniforms', 'security-uniforms', 'corporate-uniforms'];
-    switchPages(valid.indexOf(initial) !== -1 ? initial : 'home');
+    function restorePageFromHash() {
+      var route = (location.hash || '#home').slice(1).split('?');
+      var initial = route[0];
+      var valid = ['home', 'about', 'process', 'products', 'catalogue', 'contact', 'school-uniforms', 'summer-uniforms', 'winter-uniforms', 'sport-uniforms', 'accessories-uniforms', 'hospitality-uniforms', 'healthcare-uniforms', 'security-uniforms', 'corporate-uniforms'];
+      switchPages(valid.indexOf(initial) !== -1 ? initial : 'home');
+      if (initial === 'school-uniforms') {
+        var category = new URLSearchParams(route[1] || '').get('category') || 'all';
+        var tabs = Array.from(document.querySelectorAll('#page-school-uniforms .filter-tab'));
+        filterSchoolProducts(tabs.some(function (tab) { return tab.dataset.filter === category; }) ? category : 'all');
+      }
+    }
+    restorePageFromHash();
+    window.addEventListener('hashchange', restorePageFromHash);
 
     window.addEventListener('resize', function () {
       var current = document.querySelector('nav.main-nav button[aria-current="page"]');
@@ -5630,6 +5643,10 @@
   function filterSchoolProducts(category) {
     const cards = document.querySelectorAll('.school-products-grid .product-card');
     const tabs = document.querySelectorAll('#page-school-uniforms .filter-tab');
+    if (document.getElementById('page-school-uniforms').classList.contains('active')) {
+      const categoryHash = category === 'all' ? '' : '?category=' + encodeURIComponent(category);
+      history.replaceState(null, '', '#school-uniforms' + categoryHash);
+    }
 
     // Update active tab
     tabs.forEach(tab => {
