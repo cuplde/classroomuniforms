@@ -1688,7 +1688,10 @@
             <button class="filter-tab" data-filter="summer" onclick="filterSchoolProducts('summer')">Summer</button>
             <button class="filter-tab" data-filter="sport" onclick="filterSchoolProducts('sport')">Sport</button>
             <button class="filter-tab" data-filter="accessories" onclick="filterSchoolProducts('accessories')">Accessories</button>
-            <button class="filter-tab" data-filter="ties" onclick="filterSchoolProducts('ties')">Ties</button>
+            <span id="accessory-subtabs" style="display:none; gap:0.65rem; align-items:center; margin-left:0.2rem; padding-left:0.75rem; border-left:1px solid var(--line);">
+              <button class="filter-tab accessory-subtab" data-filter="ties" onclick="filterSchoolProducts('ties')">Ties</button>
+              <button class="filter-tab accessory-subtab" data-filter="belts" onclick="filterSchoolProducts('belts')">Belts</button>
+            </span>
             <button class="filter-tab" data-filter="dav" onclick="filterSchoolProducts('dav')">DAV</button>
             <button class="filter-tab" data-filter="kv" onclick="filterSchoolProducts('kv')">KV</button>
             <button class="filter-tab" data-filter="scout" onclick="filterSchoolProducts('scout')">Scout</button>
@@ -1722,13 +1725,6 @@
           <div class="product-image">Photo 4</div>
           <h3 class="product-title">Sports Jersey</h3>
           <p class="product-description">Performance fabric</p>
-          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
-        </div>
-        <!-- Accessories -->
-        <div class="product-card" data-category="accessories">
-          <div class="product-image">Photo 5</div>
-          <h3 class="product-title">School Tie</h3>
-          <p class="product-description">Official pattern</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
         <!-- DAV Products -->
@@ -1966,6 +1962,78 @@
           </div>
           <h3 class="product-title">Charcoal & Gold Double Stripe School Tie</h3>
           <p class="product-description">School tie design available for institutional and bulk uniform orders.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts accessories">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/0d1481b4-60c0-4dda-9526-247985974541.jpg" alt="School Belt 01" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 01</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts accessories">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/33b1c440-68ee-415e-b266-c3e3ec1c1f28.jpg" alt="School Belt 02" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 02</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts accessories">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/4d9ac92c-5a83-4a90-a294-9e623a120b1a.jpg" alt="School Belt 03" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 03</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts accessories">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/4dc1597c-deb7-409f-b14c-f587d89cf607.jpg" alt="School Belt 04" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 04</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts accessories">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/5795cf1f-ff5e-49b5-a903-43165be4631d.jpg" alt="School Belt 05" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 05</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts accessories">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/84093752-78be-4332-a0db-c05951a441fe.jpg" alt="School Belt 06" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 06</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts accessories">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/aa90asjk-9asdnnos-92039023kk-92030230.png" alt="School Belt 07" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 07</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts accessories">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/c279a434-346e-48e0-88c6-d6841d0ee821.jpg" alt="School Belt 08" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 08</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts accessories">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/fee4cca8-045a-4b82-aef7-8b82854ee7c9.jpg" alt="School Belt 09" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 09</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
 </div>
@@ -3847,6 +3915,72 @@
           <p class="product-description">School tie design available for institutional and bulk uniform orders.</p>
         </div>
       </div>
+      <div class="section-head reveal" style="margin-top:2.6rem;"><span class="eyebrow">School Belts</span><h2>Belt Designs</h2><p>9 school belt designs displayed fully on clean white backgrounds.</p></div>
+      <div class="products-grid grid-3" style="margin-top:1.5rem;">
+        <div class="product-card belt-product-card" data-category="belts">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/0d1481b4-60c0-4dda-9526-247985974541.jpg" alt="School Belt 01" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 01</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/33b1c440-68ee-415e-b266-c3e3ec1c1f28.jpg" alt="School Belt 02" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 02</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/4d9ac92c-5a83-4a90-a294-9e623a120b1a.jpg" alt="School Belt 03" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 03</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/4dc1597c-deb7-409f-b14c-f587d89cf607.jpg" alt="School Belt 04" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 04</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/5795cf1f-ff5e-49b5-a903-43165be4631d.jpg" alt="School Belt 05" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 05</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/84093752-78be-4332-a0db-c05951a441fe.jpg" alt="School Belt 06" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 06</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/aa90asjk-9asdnnos-92039023kk-92030230.png" alt="School Belt 07" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 07</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/c279a434-346e-48e0-88c6-d6841d0ee821.jpg" alt="School Belt 08" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 08</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+        </div>
+        <div class="product-card belt-product-card" data-category="belts">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:#fff;">
+            <img src="/images/uniforms/school-uniforms/accessories/belts/fee4cca8-045a-4b82-aef7-8b82854ee7c9.jpg" alt="School Belt 09" style="width:100%;height:100%;object-fit:contain;background:#fff;padding:1rem;">
+          </div>
+          <h3 class="product-title">School Belt 09</h3>
+          <p class="product-description">School uniform belt available for institutional and bulk orders.</p>
+        </div>
+      </div>
       <div class="gallery-note" style="margin-top:2.4rem;">
         Accessories are where schools stand out. We handle all embroidery &amp; crest work in-house, so finishing is exact &amp; consistent across every shipment.
       </div>
@@ -5640,6 +5774,11 @@
       }
     });
 
+    const accessorySubtabs = document.getElementById('accessory-subtabs');
+    if (accessorySubtabs) {
+      accessorySubtabs.style.display = ['accessories', 'ties', 'belts'].includes(category) ? 'inline-flex' : 'none';
+    }
+
     // Filter products
     cards.forEach(card => {
       const categories = (card.getAttribute('data-category') || '').split(/\s+/);
@@ -5766,13 +5905,13 @@ function openProductModal(productName, imgSrc) {
   document.getElementById('modalProductDescription').innerHTML = details.description;
   document.getElementById('modalImg').src = imgSrc || details.image;
 
-  const isTie = /school tie/i.test(productName);
+  const isAccessoryImage = /school tie|school belt/i.test(productName);
   const modalPanel = document.getElementById('modalImagePanel');
   const modalImg = document.getElementById('modalImg');
-  if (modalPanel) modalPanel.style.background = isTie ? '#fff' : 'var(--line)';
+  if (modalPanel) modalPanel.style.background = isAccessoryImage ? '#fff' : 'var(--line)';
   if (modalImg) {
     modalImg.style.objectFit = 'contain';
-    modalImg.style.background = isTie ? '#fff' : 'transparent';
+    modalImg.style.background = isAccessoryImage ? '#fff' : 'transparent';
   }
   const enquiryText = 'Hi Classroom Uniforms, I am interested in the ' + productName + '. Could you provide more details and pricing?';
   const whatsapp = document.getElementById('modalWhatsApp');
