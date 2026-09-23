@@ -1687,10 +1687,12 @@
 <button class="filter-tab" data-filter="winter" onclick="filterSchoolProducts('winter')">Winter</button>
             <button class="filter-tab" data-filter="summer" onclick="filterSchoolProducts('summer')">Summer</button>
             <button class="filter-tab" data-filter="sport" onclick="filterSchoolProducts('sport')">Sport</button>
-            <button class="filter-tab" data-filter="accessories" onclick="filterSchoolProducts('accessories')">Accessories</button>
-            <span id="accessory-subtabs" style="display:none; gap:0.65rem; align-items:center; margin-left:0.2rem; padding-left:0.75rem; border-left:1px solid var(--line);">
-              <button class="filter-tab accessory-subtab" data-filter="ties" onclick="filterSchoolProducts('ties')">Ties</button>
-              <button class="filter-tab accessory-subtab" data-filter="belts" onclick="filterSchoolProducts('belts')">Belts</button>
+            <span class="accessories-filter-group" style="display:inline-flex; flex-direction:column; align-items:flex-start; vertical-align:top;">
+              <button class="filter-tab" data-filter="accessories" onclick="filterSchoolProducts('accessories')">Accessories</button>
+              <span id="accessory-subtabs" style="display:none; flex-direction:column; gap:0.25rem; align-items:flex-start; margin-top:0.35rem; padding-left:0.65rem; border-left:1px solid var(--line);">
+                <button class="filter-tab accessory-subtab" data-filter="ties" onclick="filterSchoolProducts('ties')">Ties</button>
+                <button class="filter-tab accessory-subtab" data-filter="belts" onclick="filterSchoolProducts('belts')">Belts</button>
+              </span>
             </span>
             <button class="filter-tab" data-filter="dav" onclick="filterSchoolProducts('dav')">DAV</button>
             <button class="filter-tab" data-filter="kv" onclick="filterSchoolProducts('kv')">KV</button>
@@ -5766,17 +5768,23 @@
     const cards = document.querySelectorAll('.school-products-grid .product-card');
     const tabs = document.querySelectorAll('#page-school-uniforms .filter-tab');
 
+    // Accessories opens its category menu and preselects Ties instead of showing everything.
+    if (category === 'accessories') {
+      category = 'ties';
+    }
+
     // Update active tab
     tabs.forEach(tab => {
       tab.classList.remove('active');
-      if (tab.getAttribute('data-filter') === category) {
+      const tabFilter = tab.getAttribute('data-filter');
+      if (tabFilter === category || (tabFilter === 'accessories' && (category === 'ties' || category === 'belts'))) {
         tab.classList.add('active');
       }
     });
 
     const accessorySubtabs = document.getElementById('accessory-subtabs');
     if (accessorySubtabs) {
-      accessorySubtabs.style.display = ['accessories', 'ties', 'belts'].includes(category) ? 'inline-flex' : 'none';
+      accessorySubtabs.style.display = ['ties', 'belts'].includes(category) ? 'flex' : 'none';
     }
 
     // Filter products
