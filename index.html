@@ -1366,8 +1366,9 @@
     pointer-events: none;
   }
   .brand-intro.is-active {
-    display: grid;
-    opacity: 1;
+    display: grid !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     pointer-events: auto;
   }
   .brand-intro.is-leaving {
@@ -1603,13 +1604,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .brand-intro { display:none !important; }
-    body.brand-intro-running { overflow:auto; }
-    body.brand-intro-running .site-header .brand { opacity:1; }
     .filter-tab.active,
     .school-products-grid .product-card,
-    .corporate-products-grid .product-card { animation:none !important; }
-    .tie-cursor { display:none !important; }
+    .corporate-products-grid .product-card { animation-duration:.01ms !important; }
   }
 
 </style>
@@ -6532,7 +6529,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 (function() {
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('brand-effects-js-ready');
+  const reduceMotion = false;
   const intro = document.getElementById('brand-intro');
   const stage = document.getElementById('brand-intro-stage');
   const brand = document.querySelector('.site-header .brand');
@@ -6608,11 +6606,18 @@ document.addEventListener('DOMContentLoaded', function() {
     },7600);
   }
 
-  // Auto-play exactly once on every full refresh, only after the page and images are fully loaded.
-  if (!reduceMotion) {
-    window.addEventListener('load',function(){
-      window.setTimeout(playBrandIntro,180);
-    },{once:true});
+  // Auto-play exactly once on every full refresh, after the page and images are fully loaded.
+  // readyState fallback makes this reliable even if the browser restores a cached page very quickly.
+  let autoPlayed = false;
+  function autoPlayOnce() {
+    if (autoPlayed) return;
+    autoPlayed = true;
+    window.setTimeout(playBrandIntro,260);
+  }
+  if (document.readyState === 'complete') {
+    autoPlayOnce();
+  } else {
+    window.addEventListener('load',autoPlayOnce,{once:true});
   }
 
   // Clicking the real logo can replay the same animation an unlimited number of times.
@@ -6623,13 +6628,16 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Visible inverted-tie cursor for desktop pointer devices.
-  if (!reduceMotion && tieCursor && window.matchMedia && window.matchMedia('(pointer:fine)').matches) {
+  // Use pointermove so it works consistently with mouse, pen and Chromium pointer handling.
+  if (tieCursor && window.matchMedia && window.matchMedia('(pointer:fine)').matches) {
     document.documentElement.classList.add('tie-cursor-ready');
-    document.addEventListener('mousemove',function(e){
+    const moveTieCursor = function(e) {
       tieCursor.style.left=e.clientX+'px';
       tieCursor.style.top=e.clientY+'px';
       tieCursor.classList.add('is-visible');
-    },{passive:true});
+    };
+    window.addEventListener('pointermove',moveTieCursor,{passive:true});
+    window.addEventListener('mousemove',moveTieCursor,{passive:true});
     document.addEventListener('mouseleave',function(){ tieCursor.classList.remove('is-visible'); });
     document.addEventListener('mouseenter',function(){ tieCursor.classList.add('is-visible'); });
   }
