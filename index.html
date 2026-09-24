@@ -1269,13 +1269,13 @@
   }
 
 
-  /* ---------- Classroom tie cursor (desktop) ---------- */
-  @media (pointer: fine) {
-    html, body, body * {
-      cursor: url('/images/shared/branding/tie-cursor.png') 16 1, auto !important;
+  /* ---------- Classroom tie cursor ---------- */
+  @media (pointer:fine) {
+    html, body, body *, a, button, .product-card, .filter-tab {
+      cursor: url('/images/shared/branding/tie-cursor.png') 16 1, pointer !important;
     }
     input, textarea, select, [contenteditable="true"] {
-      cursor: text !important;
+      cursor:text !important;
     }
   }
 
@@ -1286,76 +1286,75 @@
   }
   .filter-tab:hover { transform:translateY(-2px); }
   .filter-tab:active { transform:translateY(1px) scale(.95); }
-  .filter-tab.active { animation:cuTabPop .35s var(--ease); }
+  .filter-tab.active { animation:cuTabPop .36s var(--ease); }
   @keyframes cuTabPop {
-    0% { transform:scale(.92); opacity:.55; }
+    0% { transform:scale(.92); opacity:.58; }
     60% { transform:scale(1.07); opacity:1; }
     100% { transform:scale(1); }
   }
   @keyframes cuCardIn {
-    from { opacity:0; transform:translateY(16px) scale(.98); }
+    from { opacity:0; transform:translateY(16px) scale(.982); }
     to { opacity:1; transform:translateY(0) scale(1); }
   }
 
-  /* ---------- Logo assembly animation ---------- */
-  .cu-logo-overlay {
-    position:fixed;
-    inset:0;
-    z-index:12000;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(242,234,222,.98);
-    pointer-events:none;
-    opacity:0;
+  /* ---------- Header-local exploded logo animation ---------- */
+  .brand {
+    position:relative !important;
+    overflow:visible !important;
   }
-  .cu-logo-overlay.is-running {
+
+  .brand-final {
+    width:100%;
     display:flex;
-    opacity:1;
-  }
-  .cu-logo-stage {
-    width:min(1040px,90vw);
-    display:grid;
-    grid-template-columns:minmax(170px,28%) 1fr;
     align-items:center;
-    gap:clamp(18px,3vw,44px);
-    transform-origin:center;
+    justify-content:flex-start;
+    gap:1rem;
+    transition:opacity .16s ease;
   }
-  .cu-roundel {
-    position:relative;
-    aspect-ratio:1;
+  .brand-circle-slot {
+    flex:0 0 auto;
+    width:140px;
+    height:140px;
   }
-  .cu-roundel-img {
-    position:absolute;
-    inset:0;
+  .brand-circle-slot img {
     width:100%;
     height:100%;
     object-fit:contain;
-    opacity:0;
+    display:block;
   }
-  .cu-logo-overlay.is-running .cu-roundel-img {
-    animation:cuCIn .78s var(--ease) .08s forwards;
-  }
-  .cu-people-mask {
-    position:absolute;
-    left:21%;
-    top:34%;
-    width:69%;
-    height:59%;
-    background:#F2EADE;
-    border-radius:46% 46% 40% 40%;
-    opacity:1;
-  }
-  .cu-logo-overlay.is-running .cu-people-mask {
-    animation:cuRevealPeople .65s var(--ease) .82s forwards;
-  }
-
-  .cu-wordmark {
-    position:relative;
-    aspect-ratio:2048 / 650;
+  .brand-wordmark-slot {
+    flex:1;
+    height:auto;
     min-width:0;
   }
-  .cu-wordmark > img {
+  .brand-wordmark-slot img {
+    width:100%;
+    height:auto;
+    display:block;
+  }
+
+  .brand-exploded {
+    position:absolute;
+    inset:0;
+    z-index:5;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:1rem;
+    opacity:0;
+    pointer-events:none;
+    overflow:visible;
+  }
+  .brand.is-assembling .brand-final { opacity:0; }
+  .brand.is-assembling .brand-exploded { opacity:1; }
+
+  .brand-exploded-roundel {
+    position:relative;
+    flex:0 0 auto;
+    width:140px;
+    height:140px;
+  }
+  .brand-exploded-roundel img {
     position:absolute;
     inset:0;
     width:100%;
@@ -1363,110 +1362,165 @@
     object-fit:contain;
     opacity:0;
   }
-  .cu-classroom {
-    clip-path:inset(0 0 47% 0);
-  }
-  .cu-uniforms {
-    clip-path:inset(43% 10% 18% 10%);
-  }
-  .cu-logo-overlay.is-running .cu-classroom {
-    animation:cuClassroomIn .72s var(--ease) 1.55s forwards;
-  }
-  .cu-logo-overlay.is-running .cu-uniforms {
-    animation:cuUniformsIn .66s var(--ease) 2.30s forwards;
+
+  /* C / globe / book arrives first from an exploded position */
+  .brand.is-assembling .brand-roundel-base {
+    animation:brandCJoin .66s cubic-bezier(.18,.82,.2,1) .05s forwards;
   }
 
-  /* Hide the gold A insert and O button until the final lock-in. */
-  .cu-a-cover,
-  .cu-o-cover {
+  /* cover only the centre so the boy & girl can arrive as their own piece */
+  .brand-people-cover {
+    position:absolute;
+    z-index:2;
+    left:23%;
+    top:31%;
+    width:66%;
+    height:51%;
+    background:var(--paper);
+    border-radius:48%;
+    opacity:0;
+  }
+  .brand.is-assembling .brand-people-cover {
+    opacity:1;
+    animation:brandCoverAway .12s linear 1.25s forwards;
+  }
+
+  .brand-people-piece {
+    clip-path:inset(31% 10% 18% 10%);
+    z-index:3;
+  }
+  .brand.is-assembling .brand-people-piece {
+    animation:brandPeopleJoin .58s cubic-bezier(.18,.82,.2,1) .72s forwards;
+  }
+
+  .brand-exploded-wordmark {
+    position:relative;
+    flex:1;
+    min-width:0;
+    aspect-ratio:2048 / 650;
+    overflow:visible;
+  }
+  .brand-exploded-wordmark > img {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    opacity:0;
+  }
+
+  /* CLASSROOM */
+  .brand-classroom-piece { clip-path:inset(0 0 47% 0); }
+  .brand.is-assembling .brand-classroom-piece {
+    animation:brandClassroomJoin .62s cubic-bezier(.18,.82,.2,1) 1.35s forwards;
+  }
+
+  /* UNIFORMS */
+  .brand-uniforms-piece { clip-path:inset(43% 10% 18% 10%); }
+  .brand.is-assembling .brand-uniforms-piece {
+    animation:brandUniformsJoin .58s cubic-bezier(.18,.82,.2,1) 2.00s forwards;
+  }
+
+  /* Hide the A gold insert and the O button until the last lock-in */
+  .brand-a-cover,
+  .brand-o-cover {
     position:absolute;
     z-index:4;
-    background:#F2EADE;
+    background:var(--paper);
+    opacity:0;
   }
-  .cu-a-cover {
-    left:23.4%;
-    top:20.5%;
+  .brand.is-assembling .brand-a-cover,
+  .brand.is-assembling .brand-o-cover { opacity:1; }
+
+  .brand-a-cover {
+    left:23.3%;
+    top:19.5%;
     width:6.2%;
-    height:29%;
+    height:31%;
     clip-path:polygon(50% 0,100% 100%,0 100%);
   }
-  .cu-o-cover {
-    left:47.2%;
-    top:48%;
-    width:9%;
+  .brand-o-cover {
+    left:47.1%;
+    top:47.8%;
+    width:9.2%;
     aspect-ratio:1;
     border-radius:50%;
   }
 
-  .cu-tagline {
+  /* Tagline types in, while the original image tagline remains excluded */
+  .brand-tagline {
     position:absolute;
-    left:12.3%;
-    right:12.3%;
-    bottom:4.7%;
+    left:12.2%;
+    right:12.2%;
+    bottom:4.6%;
     display:flex;
     align-items:center;
-    gap:1.2%;
+    gap:1%;
     opacity:0;
+    z-index:5;
   }
-  .cu-logo-overlay.is-running .cu-tagline {
-    animation:cuTagOn .1s linear 2.98s forwards;
+  .brand.is-assembling .brand-tagline {
+    animation:brandTagOn .08s linear 2.58s forwards;
   }
-  .cu-tagline::before,
-  .cu-tagline::after {
+  .brand-tagline::before,
+  .brand-tagline::after {
     content:"";
-    height:3px;
+    height:2px;
     flex:1;
-    background:linear-gradient(90deg,#B88616,#F4CF58,#B88616);
-    transform:scaleX(0);
+    min-width:7%;
     border-radius:99px;
+    background:linear-gradient(90deg,#B88616,#E9BF45,#B88616);
+    transform:scaleX(0);
   }
-  .cu-logo-overlay.is-running .cu-tagline::before,
-  .cu-logo-overlay.is-running .cu-tagline::after {
-    animation:cuLineGrow .45s var(--ease) 3.08s forwards;
+  .brand.is-assembling .brand-tagline::before,
+  .brand.is-assembling .brand-tagline::after {
+    animation:brandLineGrow .34s var(--ease) 2.66s forwards;
   }
-  .cu-tagline-text {
+  .brand-tagline-text {
     color:#8C1526;
     font-family:'Archivo',sans-serif;
-    font-size:clamp(10px,1.4vw,18px);
+    font-size:clamp(6px,.78vw,10px);
     font-weight:800;
-    letter-spacing:.055em;
+    letter-spacing:.045em;
     white-space:nowrap;
     overflow:hidden;
     width:0;
-    border-right:2px solid #8C1526;
+    border-right:1px solid #8C1526;
+    line-height:1;
   }
-  .cu-logo-overlay.is-running .cu-tagline-text {
+  .brand.is-assembling .brand-tagline-text {
     animation:
-      cuType 1.05s steps(27,end) 3.08s forwards,
-      cuCaret .48s step-end 3.08s 4;
+      brandType .82s steps(27,end) 2.66s forwards,
+      brandCaret .38s step-end 2.66s 4;
   }
 
-  .cu-a-piece {
+  /* Final exploded A and O parts lock into the exact wordmark area */
+  .brand-a-piece {
     position:absolute;
-    z-index:6;
+    z-index:7;
     left:23.65%;
-    top:24.4%;
-    width:5.2%;
+    top:24.2%;
+    width:5.25%;
     aspect-ratio:.86;
-    background:linear-gradient(135deg,#FFE784,#D7A32B 52%,#FFF0A7);
+    background:linear-gradient(135deg,#FFE47B 0%,#D5A129 52%,#FFF0A6 100%);
     clip-path:polygon(50% 0,100% 100%,0 100%);
     opacity:0;
-    filter:drop-shadow(0 5px 8px rgba(100,63,0,.25));
+    filter:drop-shadow(0 2px 3px rgba(90,58,0,.24));
   }
-  .cu-o-piece {
+  .brand-o-piece {
     position:absolute;
-    z-index:6;
+    z-index:7;
     left:48.05%;
-    top:53.2%;
-    width:7.5%;
+    top:53%;
+    width:7.55%;
     aspect-ratio:1;
     border-radius:50%;
-    border:clamp(3px,.45vw,7px) solid #D3A329;
-    background:#F4CB57;
+    border:2px solid #D3A228;
+    background:#F1C852;
     opacity:0;
-    box-shadow:inset 0 0 0 2px rgba(255,241,164,.8),0 5px 12px rgba(110,70,0,.22);
+    box-shadow:inset 0 0 0 1px rgba(255,241,164,.9);
   }
-  .cu-o-piece::before {
+  .brand-o-piece::before {
     content:"";
     position:absolute;
     inset:22%;
@@ -1477,88 +1531,103 @@
       radial-gradient(circle at 25% 75%,#8E6915 0 12%,transparent 13%),
       radial-gradient(circle at 75% 75%,#8E6915 0 12%,transparent 13%);
   }
-  .cu-logo-overlay.is-running .cu-a-piece {
-    animation:cuALock .7s cubic-bezier(.2,.9,.25,1.15) 4.25s forwards;
+  .brand.is-assembling .brand-a-piece {
+    animation:brandALock .54s cubic-bezier(.18,.9,.22,1.14) 3.50s forwards;
   }
-  .cu-logo-overlay.is-running .cu-o-piece {
-    animation:cuOLock .74s cubic-bezier(.2,.9,.25,1.15) 4.25s forwards;
-  }
-
-  @keyframes cuCIn {
-    from { opacity:0; transform:scale(1.72) rotate(-12deg); filter:blur(9px); }
-    70% { opacity:1; transform:scale(.97) rotate(2deg); filter:blur(0); }
-    to { opacity:1; transform:scale(1) rotate(0); filter:blur(0); }
-  }
-  @keyframes cuRevealPeople {
-    from { opacity:1; transform:scale(1.08); }
-    to { opacity:0; transform:scale(.72); }
-  }
-  @keyframes cuClassroomIn {
-    from { opacity:0; transform:translateX(130px); filter:blur(8px); }
-    to { opacity:1; transform:translateX(0); filter:blur(0); }
-  }
-  @keyframes cuUniformsIn {
-    from { opacity:0; transform:translateY(42px) scale(.94); filter:blur(6px); }
-    to { opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
-  }
-  @keyframes cuTagOn { to { opacity:1; } }
-  @keyframes cuLineGrow { to { transform:scaleX(1); } }
-  @keyframes cuType { to { width:100%; } }
-  @keyframes cuCaret { 50% { border-right-color:transparent; } }
-  @keyframes cuALock {
-    from { opacity:0; transform:translate(-210px,-115px) rotate(-65deg) scale(.4); }
-    72% { opacity:1; transform:translate(4px,2px) rotate(5deg) scale(1.08); }
-    to { opacity:1; transform:none; }
-  }
-  @keyframes cuOLock {
-    from { opacity:0; transform:translate(220px,105px) rotate(250deg) scale(.38); }
-    72% { opacity:1; transform:translate(-4px,2px) rotate(-7deg) scale(1.08); }
-    to { opacity:1; transform:none; }
+  .brand.is-assembling .brand-o-piece {
+    animation:brandOLock .58s cubic-bezier(.18,.9,.22,1.14) 3.50s forwards;
   }
 
-  @media (max-width:700px) {
-    .cu-logo-stage {
-      width:min(94vw,700px);
-      grid-template-columns:25% 1fr;
-      gap:12px;
-    }
-    .cu-tagline-text { font-size:clamp(7px,2vw,12px); }
+  .brand.is-finishing .brand-exploded {
+    opacity:0;
+    transition:opacity .18s ease;
+  }
+  .brand.is-finishing .brand-final {
+    opacity:1;
+    transition:opacity .18s ease;
+  }
+
+  @keyframes brandCJoin {
+    from { opacity:0; transform:translate(-54px,-24px) rotate(-14deg) scale(1.22); filter:blur(6px); }
+    72% { opacity:1; transform:translate(3px,1px) rotate(2deg) scale(.98); filter:blur(0); }
+    to { opacity:1; transform:none; filter:blur(0); }
+  }
+  @keyframes brandPeopleJoin {
+    from { opacity:0; transform:translate(34px,26px) rotate(7deg) scale(.78); filter:blur(5px); }
+    72% { opacity:1; transform:translate(-2px,-1px) rotate(-1deg) scale(1.04); filter:blur(0); }
+    to { opacity:1; transform:none; filter:blur(0); }
+  }
+  @keyframes brandCoverAway { to { opacity:0; } }
+  @keyframes brandClassroomJoin {
+    from { opacity:0; transform:translateX(58px) rotate(1.5deg); filter:blur(5px); }
+    to { opacity:1; transform:none; filter:blur(0); }
+  }
+  @keyframes brandUniformsJoin {
+    from { opacity:0; transform:translateY(28px) scale(.95); filter:blur(4px); }
+    to { opacity:1; transform:none; filter:blur(0); }
+  }
+  @keyframes brandTagOn { to { opacity:1; } }
+  @keyframes brandLineGrow { to { transform:scaleX(1); } }
+  @keyframes brandType { to { width:100%; } }
+  @keyframes brandCaret { 50% { border-right-color:transparent; } }
+  @keyframes brandALock {
+    from { opacity:0; transform:translate(-82px,-52px) rotate(-58deg) scale(.45); }
+    72% { opacity:1; transform:translate(2px,1px) rotate(4deg) scale(1.08); }
+    to { opacity:1; transform:none; }
+  }
+  @keyframes brandOLock {
+    from { opacity:0; transform:translate(92px,48px) rotate(220deg) scale(.42); }
+    72% { opacity:1; transform:translate(-2px,1px) rotate(-5deg) scale(1.08); }
+    to { opacity:1; transform:none; }
+  }
+
+  @media (max-width:860px) {
+    .brand-circle-slot,
+    .brand-exploded-roundel { width:85px; height:85px; }
+  }
+  @media (max-width:600px) {
+    .brand-circle-slot,
+    .brand-exploded-roundel { width:65px; height:65px; }
+    .brand-final,
+    .brand-exploded { gap:.6rem; }
+    .brand-tagline-text { font-size:5px; }
   }
 </style>
 
 </head>
 <body>
 
-
-<div class="cu-logo-overlay" id="cu-logo-overlay" aria-hidden="true">
-  <div class="cu-logo-stage" id="cu-logo-stage">
-    <div class="cu-roundel">
-      <img class="cu-roundel-img" src="/images/shared/branding/circular-logo/image_0.png" alt="">
-      <span class="cu-people-mask"></span>
-    </div>
-    <div class="cu-wordmark">
-      <img class="cu-classroom" src="/images/shared/branding/wordmark/image_1.png" alt="">
-      <img class="cu-uniforms" src="/images/shared/branding/wordmark/image_1.png" alt="">
-      <span class="cu-a-cover"></span>
-      <span class="cu-o-cover"></span>
-      <span class="cu-a-piece"></span>
-      <span class="cu-o-piece"></span>
-      <div class="cu-tagline">
-        <span class="cu-tagline-text">FROM CLASSROOM TO THE WORLD</span>
-      </div>
-    </div>
-  </div>
-</div>
-
 <header class="site-header">
   <div class="header-inner">
-            <button class="brand" data-nav="home" aria-label="Classroom Uniforms — go to home" style="width: 100%; max-width: 100%; height: auto; background: none; border: none; cursor: pointer; padding: 0; margin: 0; display: flex; align-items: center; justify-content: flex-start; gap: 1rem;">
-        <div style="flex: 0 0 auto; width: 140px; height: 140px;">
-          <img src="/images/shared/branding/circular-logo/image_0.png" alt="Classroom Uniforms Circular Logo" style="width: 100%; height: 100%; object-fit: contain;">
-        </div>
-        <div style="flex: 1; height: auto;">
-          <img src="/images/shared/branding/wordmark/image_1.png" alt="Classroom Uniforms Branding" style="width: 100%; height: auto; display: block;">
-        </div>
+            <button class="brand" data-nav="home" aria-label="Classroom Uniforms — go to home" style="width:100%;max-width:100%;height:auto;background:none;border:none;padding:0;margin:0;display:block;">
+        <span class="brand-final">
+          <span class="brand-circle-slot">
+            <img src="/images/shared/branding/circular-logo/image_0.png" alt="Classroom Uniforms Circular Logo">
+          </span>
+          <span class="brand-wordmark-slot">
+            <img src="/images/shared/branding/wordmark/image_1.png" alt="Classroom Uniforms Branding">
+          </span>
+        </span>
+
+        <span class="brand-exploded" aria-hidden="true">
+          <span class="brand-exploded-roundel">
+            <img class="brand-roundel-base" src="/images/shared/branding/circular-logo/image_0.png" alt="">
+            <span class="brand-people-cover"></span>
+            <img class="brand-people-piece" src="/images/shared/branding/circular-logo/image_0.png" alt="">
+          </span>
+
+          <span class="brand-exploded-wordmark">
+            <img class="brand-classroom-piece" src="/images/shared/branding/wordmark/image_1.png" alt="">
+            <img class="brand-uniforms-piece" src="/images/shared/branding/wordmark/image_1.png" alt="">
+            <span class="brand-a-cover"></span>
+            <span class="brand-o-cover"></span>
+            <span class="brand-a-piece"></span>
+            <span class="brand-o-piece"></span>
+            <span class="brand-tagline">
+              <span class="brand-tagline-text">FROM CLASSROOM TO THE WORLD</span>
+            </span>
+          </span>
+        </span>
       </button>
 
     <nav class="main-nav" id="main-nav">
@@ -6428,110 +6497,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 (function(){
-  const overlay=document.getElementById('cu-logo-overlay');
-  const stage=document.getElementById('cu-logo-stage');
   const brand=document.querySelector('.site-header .brand');
-  if(!overlay||!stage||!brand) return;
+  if(!brand) return;
 
-  let runId=0;
+  let timerA=null;
+  let timerB=null;
   let autoPlayed=false;
-  let timers=[];
 
-  function clearTimers(){
-    timers.forEach(clearTimeout);
-    timers=[];
+  function clearBrandTimers(){
+    if(timerA) clearTimeout(timerA);
+    if(timerB) clearTimeout(timerB);
+    timerA=timerB=null;
   }
 
-  function stopAnimations(){
-    if(stage.getAnimations) stage.getAnimations().forEach(a=>a.cancel());
-    if(overlay.getAnimations) overlay.getAnimations().forEach(a=>a.cancel());
-  }
+  function playBrandAssembly(){
+    clearBrandTimers();
+    brand.classList.remove('is-finishing','is-assembling');
+    void brand.offsetWidth;
+    brand.classList.add('is-assembling');
 
-  function reset(){
-    clearTimers();
-    stopAnimations();
-    overlay.classList.remove('is-running');
-    overlay.style.opacity='';
-    overlay.style.background='';
-    stage.style.transform='';
-  }
+    // Crossfade to the exact original logo after the last A/O pieces lock in.
+    timerA=setTimeout(function(){
+      brand.classList.add('is-finishing');
+    },4200);
 
-  function playLogoAnimation(){
-    runId++;
-    const myRun=runId;
-    reset();
-
-    // Force CSS animations to restart from frame 1.
-    void overlay.offsetWidth;
-    overlay.classList.add('is-running');
-
-    // After the final A/O lock, move the completed mark into the real header logo.
-    timers.push(setTimeout(function(){
-      if(myRun!==runId) return;
-      const sr=stage.getBoundingClientRect();
-      const tr=brand.getBoundingClientRect();
-      if(!sr.width||!tr.width) return;
-
-      const dx=(tr.left+tr.width/2)-(sr.left+sr.width/2);
-      const dy=(tr.top+tr.height/2)-(sr.top+sr.height/2);
-      const scale=Math.min(tr.width/sr.width,tr.height/sr.height);
-
-      if(stage.animate){
-        stage.animate(
-          [
-            {transform:'translate(0,0) scale(1)',opacity:1},
-            {transform:'translate('+dx+'px,'+dy+'px) scale('+scale+')',opacity:1}
-          ],
-          {duration:850,easing:'cubic-bezier(.18,.82,.2,1)',fill:'forwards'}
-        );
-      }
-      if(overlay.animate){
-        overlay.animate(
-          [{background:'rgba(242,234,222,.98)'},{background:'rgba(242,234,222,0)'}],
-          {duration:850,easing:'ease',fill:'forwards'}
-        );
-      }
-    },5100));
-
-    // Clean exit.
-    timers.push(setTimeout(function(){
-      if(myRun!==runId) return;
-      overlay.style.opacity='0';
-    },5880));
-
-    timers.push(setTimeout(function(){
-      if(myRun!==runId) return;
-      overlay.classList.remove('is-running');
-      overlay.style.opacity='';
-      stopAnimations();
-    },6300));
-
-    // Absolute safety fallback: page can never remain covered.
-    timers.push(setTimeout(function(){
-      if(myRun!==runId) return;
-      overlay.classList.remove('is-running');
-      overlay.style.opacity='';
-      stopAnimations();
-    },7600));
+    timerB=setTimeout(function(){
+      brand.classList.remove('is-assembling','is-finishing');
+    },4430);
   }
 
   function autoPlayOnce(){
     if(autoPlayed) return;
     autoPlayed=true;
-    setTimeout(playLogoAnimation,220);
+    setTimeout(playBrandAssembly,220);
   }
 
-  // Exactly once per full refresh, only after all page assets finish loading.
+  // Once per refresh, after the whole page is loaded.
   if(document.readyState==='complete') autoPlayOnce();
   else window.addEventListener('load',autoPlayOnce,{once:true});
 
-  // Unlimited manual replay by clicking the header logo.
+  // Every logo click replays the same assembly, without covering the page.
   brand.addEventListener('click',function(){
-    setTimeout(playLogoAnimation,60);
+    setTimeout(playBrandAssembly,40);
   });
 
-  // Expose for quick browser testing if needed.
-  window.playClassroomLogoAnimation=playLogoAnimation;
+  window.playClassroomLogoAnimation=playBrandAssembly;
 })();
 </script>
 </body>
