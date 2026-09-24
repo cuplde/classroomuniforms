@@ -2060,6 +2060,88 @@
       min-height: 2.8rem !important;
     }
   }
+
+
+  /* ===== FULL PERSON SAFE FRAME ===== */
+  /* Final catalogue rule: every frame stays equal, while every source image
+     is shown completely inside it with a small safety margin so heads/feet
+     never touch or disappear beyond the frame. */
+
+  .school-products-grid .product-card .product-image,
+  .corporate-products-grid .product-card .product-image {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 5 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 18px !important;
+    background: color-mix(in srgb, var(--paper) 96%, var(--surface)) !important;
+    box-shadow: none !important;
+  }
+
+  .school-products-grid .product-card .product-image img,
+  .corporate-products-grid .product-card .product-image img {
+    position: absolute !important;
+    inset: 8px 6px 8px 6px !important;
+    width: calc(100% - 12px) !important;
+    height: calc(100% - 16px) !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .school-products-grid .product-card:hover .product-image img,
+  .corporate-products-grid .product-card:hover .product-image img {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* White accessory presentation, same outside frame dimensions. */
+  .tie-product-card .product-image,
+  .belt-product-card .product-image,
+  .sock-product-card .product-image {
+    background: #fff !important;
+  }
+
+  .tie-product-card .product-image img,
+  .belt-product-card .product-image img,
+  .sock-product-card .product-image img {
+    inset: 12px !important;
+    width: calc(100% - 24px) !important;
+    height: calc(100% - 24px) !important;
+    object-fit: contain !important;
+    background: #fff !important;
+  }
+
+  @media (max-width:600px) {
+    .school-products-grid .product-card .product-image,
+    .corporate-products-grid .product-card .product-image {
+      border-radius: 14px !important;
+    }
+
+    .school-products-grid .product-card .product-image img,
+    .corporate-products-grid .product-card .product-image img {
+      inset: 6px 4px 6px 4px !important;
+      width: calc(100% - 8px) !important;
+      height: calc(100% - 12px) !important;
+      border-radius: 10px !important;
+    }
+  }
 </style>
 
 </head>
