@@ -1269,329 +1269,713 @@
   }
 
 
-  /* ---------- Classroom tie cursor ---------- */
-  @media (pointer:fine) {
-    html, body, body *, a, button, .product-card, .filter-tab {
-      cursor: url('/images/shared/branding/tie-cursor.png') 16 1, pointer !important;
-    }
-    input, textarea, select, [contenteditable="true"] {
-      cursor:text !important;
-    }
+  /* ==========================================================
+     CLASSROOM 2026 — ultra-modern interaction layer
+     Preserves the existing maroon / cream / brass brand palette.
+     ========================================================== */
+
+  :root {
+    --cu-radius-sm: 12px;
+    --cu-radius: 18px;
+    --cu-radius-lg: 28px;
+    --cu-radius-xl: 36px;
+    --cu-glass: color-mix(in srgb, var(--surface) 82%, transparent);
+    --cu-glass-strong: color-mix(in srgb, var(--surface) 94%, transparent);
+    --cu-shadow-soft: 0 12px 34px rgba(74, 42, 34, .09);
+    --cu-shadow-card: 0 18px 46px rgba(74, 42, 34, .12);
+    --cu-shadow-hover: 0 28px 60px rgba(98, 42, 47, .18);
+    --cu-gold-glow: rgba(198, 154, 36, .18);
+    --cu-maroon-glow: rgba(98, 42, 47, .14);
   }
 
-  /* ---------- Catalogue tab animation ---------- */
-  .filter-tab {
-    transform-origin:center;
-    transition:transform .2s ease,color .2s ease,opacity .2s ease;
-  }
-  .filter-tab:hover { transform:translateY(-2px); }
-  .filter-tab:active { transform:translateY(1px) scale(.95); }
-  .filter-tab.active { animation:cuTabPop .36s var(--ease); }
-  @keyframes cuTabPop {
-    0% { transform:scale(.92); opacity:.58; }
-    60% { transform:scale(1.07); opacity:1; }
-    100% { transform:scale(1); }
-  }
-  @keyframes cuCardIn {
-    from { opacity:0; transform:translateY(16px) scale(.982); }
-    to { opacity:1; transform:translateY(0) scale(1); }
+  html { scroll-padding-top: 118px; }
+
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 10% 4%, var(--cu-gold-glow), transparent 24rem),
+      radial-gradient(circle at 92% 15%, var(--cu-maroon-glow), transparent 28rem),
+      var(--paper);
+    background-attachment: fixed;
   }
 
-  /* ---------- Header-local exploded logo animation ---------- */
+  body::before {
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    opacity:.45;
+    background-image:
+      linear-gradient(rgba(98,42,47,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(98,42,47,.025) 1px, transparent 1px);
+    background-size: 36px 36px;
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 74%);
+    mask-image: linear-gradient(to bottom, #000, transparent 74%);
+  }
+
+  /* ---------- Floating glass header ---------- */
+  header.site-header {
+    background: transparent !important;
+    border-bottom: 0 !important;
+    backdrop-filter: none !important;
+    padding: 12px 0 0;
+  }
+
+  .header-inner {
+    width: min(1280px, calc(100% - 28px));
+    max-width: 1280px;
+    min-height: 92px;
+    margin: 0 auto !important;
+    padding: .68rem 1rem .68rem 1.1rem !important;
+    border: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
+    border-radius: 24px;
+    background: color-mix(in srgb, var(--paper) 84%, transparent);
+    backdrop-filter: blur(20px) saturate(1.35);
+    -webkit-backdrop-filter: blur(20px) saturate(1.35);
+    box-shadow: 0 12px 38px rgba(55, 31, 25, .09);
+  }
+
   .brand {
-    position:relative !important;
+    flex: 0 1 460px;
+    min-width: 235px;
+    border-radius: 18px !important;
+    transition: transform .26s var(--ease), background .26s ease !important;
+  }
+  .brand:hover {
+    transform: translateY(-2px) scale(1.008);
+    background: color-mix(in srgb, var(--surface) 46%, transparent) !important;
+  }
+  .brand:active { transform: scale(.985); }
+
+  nav.main-nav {
+    gap: .3rem !important;
+    padding: .28rem;
+    border-radius: 18px;
+  }
+  nav.main-nav button {
+    padding: .62rem .78rem !important;
+    border-radius: 13px !important;
+    font-size: .82rem !important;
+    transition:
+      color .22s ease,
+      background .22s ease,
+      transform .24s cubic-bezier(.34,1.56,.64,1),
+      box-shadow .22s ease !important;
+  }
+  nav.main-nav button:hover {
+    transform: translateY(-2px) scale(1.035);
+    background: color-mix(in srgb, var(--surface-2) 70%, transparent) !important;
+  }
+  nav.main-nav button:active { transform: translateY(1px) scale(.94); }
+  nav.main-nav button[aria-current="page"] {
+    color: var(--navy-ink) !important;
+    background: var(--maroon) !important;
+    box-shadow: 0 8px 20px rgba(98,42,47,.2);
+  }
+  .nav-indicator { display:none !important; }
+
+  .theme-toggle,
+  .nav-toggle {
+    border-radius: 14px !important;
+    background: var(--surface) !important;
+    box-shadow: 0 7px 18px rgba(55,31,25,.08);
+    transition: transform .24s cubic-bezier(.34,1.56,.64,1), box-shadow .24s ease !important;
+  }
+  .theme-toggle:hover,
+  .nav-toggle:hover {
+    transform: translateY(-3px) rotate(4deg) !important;
+    box-shadow: 0 12px 22px rgba(98,42,47,.16);
+  }
+
+  /* ---------- Page transitions ---------- */
+  section.page.active {
+    animation: cuPageIn .46s cubic-bezier(.22,.8,.24,1) both;
+  }
+  section.page.transitioning-out {
+    animation: cuPageOut .18s ease both !important;
+  }
+  @keyframes cuPageIn {
+    from { opacity:0; transform:translateY(14px); filter:blur(4px); }
+    to { opacity:1; transform:none; filter:blur(0); }
+  }
+  @keyframes cuPageOut {
+    from { opacity:1; transform:none; }
+    to { opacity:0; transform:translateY(7px); }
+  }
+
+  .reveal {
+    transform: translateY(22px) scale(.992);
+    filter: blur(2px);
+    transition:
+      opacity .65s var(--ease),
+      transform .72s var(--ease),
+      filter .72s var(--ease) !important;
+  }
+  .reveal.in-view {
+    transform:none;
+    filter:blur(0);
+  }
+
+  /* ---------- Hero: simple but premium ---------- */
+  #page-home .hero {
+    margin-top: 1.5rem;
+    padding: clamp(1.5rem, 3.5vw, 3rem) !important;
+    grid-template-columns: minmax(0,.85fr) minmax(0,1.15fr) !important;
+    gap: clamp(1.5rem,3vw,3rem) !important;
+    background:
+      linear-gradient(135deg,
+        color-mix(in srgb, var(--surface) 94%, transparent),
+        color-mix(in srgb, var(--surface-2) 52%, transparent));
+    border: 1px solid var(--line);
+    border-radius: var(--cu-radius-xl);
+    box-shadow: var(--cu-shadow-card);
+    overflow: hidden;
+    isolation:isolate;
+  }
+
+  #page-home .hero::after {
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    right:-130px;
+    top:-130px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(198,154,36,.2), transparent 68%);
+    z-index:0;
+    pointer-events:none;
+  }
+
+  #page-home .hero > div:first-child {
+    margin-top: 0 !important;
+    align-self:center;
+  }
+
+  #page-home .hero h1 {
+    font-size: clamp(2.65rem,5vw,5rem) !important;
+    line-height: .98 !important;
+    letter-spacing: -.045em;
+    margin: 1.15rem 0 1.45rem !important;
+  }
+
+  #page-home .hero p.lead {
+    font-size: 1.04rem !important;
+    max-width: 52ch;
+  }
+
+  .hero-product-showcase {
+    min-height: 540px !important;
+    border-radius: 28px;
+    overflow:hidden;
+    background: var(--surface-2);
+    box-shadow: inset 0 0 0 1px var(--line), 0 20px 50px rgba(55,31,25,.12);
+  }
+
+  .hero-product-showcase .product-image {
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    transition: transform .75s cubic-bezier(.22,.8,.24,1), filter .6s ease;
+  }
+  .hero-product-showcase:hover .product-image {
+    transform: scale(1.035);
+    filter:saturate(1.03);
+  }
+
+  /* ---------- Modern buttons ---------- */
+  .btn {
+    min-height: 48px;
+    padding: .78rem 1.3rem !important;
+    border-radius: 999px !important;
+    border: 1px solid transparent !important;
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+    box-shadow: 0 7px 18px rgba(55,31,25,.08);
+    transition:
+      transform .28s cubic-bezier(.34,1.56,.64,1),
+      box-shadow .28s ease,
+      background .28s ease,
+      border-color .28s ease !important;
+  }
+  .btn::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    background:linear-gradient(120deg,transparent 25%,rgba(255,255,255,.24) 50%,transparent 75%);
+    transform:translateX(-130%);
+    transition:transform .55s ease;
+  }
+  .btn:hover::before { transform:translateX(130%); }
+  .btn:hover {
+    transform: translateY(-4px) scale(1.025) !important;
+    box-shadow: 0 16px 30px rgba(98,42,47,.18) !important;
+  }
+  .btn:active { transform: translateY(0) scale(.96) !important; }
+
+  .btn-primary {
+    background: linear-gradient(135deg,var(--maroon),#7e3440) !important;
+  }
+  .btn-ghost {
+    background: color-mix(in srgb,var(--surface) 88%,transparent) !important;
+    border-color:var(--line) !important;
+  }
+
+  /* ---------- Stats and information cards ---------- */
+  .stats {
+    gap: .9rem !important;
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    border-radius:0 !important;
     overflow:visible !important;
   }
+  .stat {
+    position:relative;
+    padding:1.5rem 1.35rem !important;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background: var(--cu-glass-strong) !important;
+    box-shadow: var(--cu-shadow-soft);
+    overflow:hidden;
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease;
+  }
+  .stat::after {
+    content:"";
+    position:absolute;
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    right:-25px;
+    bottom:-30px;
+    background:rgba(198,154,36,.13);
+  }
+  .stat:hover {
+    transform:translateY(-6px) rotate(-.35deg);
+    box-shadow:var(--cu-shadow-hover);
+  }
+  .stat .num {
+    font-size:1.9rem !important;
+    letter-spacing:-.03em;
+  }
 
-  .brand-final {
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-    gap:1rem;
-    transition:opacity .16s ease;
+  .supply-row { gap:1rem !important; }
+  .supply-item {
+    min-height:170px;
+    padding:1.35rem !important;
+    border:1px solid var(--line) !important;
+    border-radius:20px;
+    background:var(--cu-glass-strong);
+    box-shadow:var(--cu-shadow-soft);
+    transition:transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s ease;
   }
-  .brand-circle-slot {
-    flex:0 0 auto;
-    width:140px;
-    height:140px;
+  .supply-item:hover {
+    transform:translateY(-5px);
+    box-shadow:var(--cu-shadow-hover);
   }
-  .brand-circle-slot img {
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    display:block;
+
+  /* ---------- Section headings ---------- */
+  .section-head {
+    max-width: 70ch !important;
   }
-  .brand-wordmark-slot {
-    flex:1;
-    height:auto;
+  .section-head h2 {
+    letter-spacing:-.035em;
+    line-height:1.04;
+  }
+  .section-head p { max-width:64ch; }
+
+  .eyebrow {
+    padding:.42rem .72rem;
+    border-radius:999px;
+    background:color-mix(in srgb,var(--surface-2) 72%,transparent);
+    border:1px solid var(--line);
+    letter-spacing:.11em !important;
+  }
+  .eyebrow::before {
+    width:8px !important;
+    height:8px !important;
+    border-radius:50%;
+    background:var(--brass-strong) !important;
+  }
+
+  /* ---------- Catalogue search + filter dock ---------- */
+  .product-filter-section {
+    position:relative;
+    margin:2rem 0 1.4rem !important;
+    padding:.8rem !important;
+    gap:1rem !important;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:var(--cu-glass);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    box-shadow:var(--cu-shadow-soft);
+  }
+
+  .search-input {
+    max-width:330px !important;
+    min-height:46px;
+    padding:.72rem 1rem !important;
+    border:1px solid var(--line) !important;
+    border-radius:999px !important;
+    background:var(--surface) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+    transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease !important;
+  }
+  .search-input:focus {
+    border-color:color-mix(in srgb,var(--maroon) 55%,var(--line)) !important;
+    box-shadow:0 0 0 4px rgba(98,42,47,.09) !important;
+    transform:translateY(-1px);
+  }
+
+  .filter-right {
+    gap:1rem !important;
     min-width:0;
   }
-  .brand-wordmark-slot img {
-    width:100%;
-    height:auto;
-    display:block;
+  .product-count {
+    padding:.48rem .7rem;
+    border-radius:999px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    font-size:.78rem !important;
+    font-weight:600;
   }
-
-  .brand-exploded {
-    position:absolute;
-    inset:0;
-    z-index:5;
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-    gap:1rem;
-    opacity:0;
-    pointer-events:none;
+  .filter-tabs {
+    gap:.38rem !important;
+    padding:.32rem;
+    border-radius:17px;
+    background:color-mix(in srgb,var(--surface-2) 55%,transparent);
     overflow:visible;
   }
-  .brand.is-assembling .brand-final { opacity:0; }
-  .brand.is-assembling .brand-exploded { opacity:1; }
-
-  .brand-exploded-roundel {
+  .filter-tab {
+    padding:.58rem .78rem !important;
+    border:1px solid transparent !important;
+    border-radius:12px !important;
+    background:transparent;
+    font-size:.82rem !important;
+    line-height:1.1;
     position:relative;
-    flex:0 0 auto;
-    width:140px;
-    height:140px;
+    transform-origin:center;
+    transition:
+      transform .24s cubic-bezier(.34,1.56,.64,1),
+      color .2s ease,
+      background .2s ease,
+      box-shadow .2s ease !important;
   }
-  .brand-exploded-roundel img {
+  .filter-tab::after { display:none !important; }
+  .filter-tab:hover {
+    color:var(--ink) !important;
+    background:var(--surface) !important;
+    transform:translateY(-3px) scale(1.04);
+    box-shadow:0 8px 16px rgba(55,31,25,.08);
+  }
+  .filter-tab:active { transform:translateY(1px) scale(.91); }
+  .filter-tab.active {
+    color:var(--navy-ink) !important;
+    background:linear-gradient(135deg,var(--maroon),#7a343e) !important;
+    box-shadow:0 9px 20px rgba(98,42,47,.22);
+    animation:cuBounceTab .42s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes cuBounceTab {
+    0% { transform:scale(.84); }
+    58% { transform:scale(1.11); }
+    100% { transform:scale(1); }
+  }
+
+  .accessories-filter-group {
+    padding:.1rem;
+    border-radius:14px;
+  }
+  #accessory-subtabs {
+    margin-top:.45rem !important;
+    gap:.38rem !important;
+    padding:.26rem !important;
+    border-radius:14px;
+    background:var(--surface);
+    box-shadow:0 8px 18px rgba(55,31,25,.08);
+  }
+
+  /* ---------- Product cards ---------- */
+  .products-grid {
+    gap:1.25rem !important;
+    margin:1.5rem 0 3rem !important;
+  }
+  .grid-3 {
+    grid-template-columns:repeat(auto-fill,minmax(210px,1fr)) !important;
+  }
+
+  .product-card {
+    position:relative;
+    border:1px solid var(--line);
+    border-radius:20px !important;
+    background:var(--surface) !important;
+    box-shadow:0 8px 22px rgba(55,31,25,.07);
+    overflow:hidden;
+    isolation:isolate;
+    transition:
+      transform .34s cubic-bezier(.34,1.56,.64,1),
+      box-shadow .32s ease,
+      border-color .32s ease !important;
+  }
+  .product-card::after {
+    content:"";
     position:absolute;
     inset:0;
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    opacity:0;
-  }
-
-  /* C / globe / book arrives first from an exploded position */
-  .brand.is-assembling .brand-roundel-base {
-    animation:brandCJoin .66s cubic-bezier(.18,.82,.2,1) .05s forwards;
-  }
-
-  /* cover only the centre so the boy & girl can arrive as their own piece */
-  .brand-people-cover {
-    position:absolute;
-    z-index:2;
-    left:23%;
-    top:31%;
-    width:66%;
-    height:51%;
-    background:var(--paper);
-    border-radius:48%;
-    opacity:0;
-  }
-  .brand.is-assembling .brand-people-cover {
-    opacity:1;
-    animation:brandCoverAway .12s linear 1.25s forwards;
-  }
-
-  .brand-people-piece {
-    clip-path:inset(31% 10% 18% 10%);
+    pointer-events:none;
+    border-radius:inherit;
+    background:linear-gradient(125deg,transparent 30%,rgba(255,255,255,.22) 47%,transparent 64%);
+    transform:translateX(-125%);
+    transition:transform .65s ease;
     z-index:3;
   }
-  .brand.is-assembling .brand-people-piece {
-    animation:brandPeopleJoin .58s cubic-bezier(.18,.82,.2,1) .72s forwards;
+  .product-card:hover {
+    transform:translateY(-8px) scale(1.018) !important;
+    box-shadow:var(--cu-shadow-hover) !important;
+    border-color:color-mix(in srgb,var(--maroon) 30%,var(--line));
+  }
+  .product-card:hover::after { transform:translateX(125%); }
+  .product-card:active { transform:translateY(-2px) scale(.985) !important; }
+
+  .product-image {
+    aspect-ratio:4/5 !important;
+    border-radius:0 !important;
+    overflow:hidden !important;
+    background:var(--surface-2);
+  }
+  .product-image img {
+    transition:transform .55s cubic-bezier(.22,.8,.24,1),filter .55s ease;
+  }
+  .product-card:hover .product-image img {
+    transform:scale(1.045);
+    filter:saturate(1.035) contrast(1.015);
   }
 
-  .brand-exploded-wordmark {
-    position:relative;
-    flex:1;
-    min-width:0;
-    aspect-ratio:2048 / 650;
-    overflow:visible;
+  .product-title {
+    padding:1rem 1rem 1.05rem !important;
+    font-size:1.04rem !important;
+    line-height:1.25 !important;
+    letter-spacing:-.015em;
   }
-  .brand-exploded-wordmark > img {
+
+  /* Accessories remain clean product shots. */
+  .tie-product-card .product-image,
+  .belt-product-card .product-image,
+  .sock-product-card .product-image {
+    background:#fff !important;
+  }
+
+  /* ---------- Bands and content sections ---------- */
+  .band {
+    padding:1.6rem 0 !important;
+  }
+  .band-surface,
+  .band-navy {
+    background:transparent !important;
+    border:0 !important;
+  }
+  .band > .wrap,
+  .band-surface > .wrap,
+  .band-navy > .wrap {
+    border-radius:var(--cu-radius-lg);
+  }
+
+  .stitched-divider { opacity:.4; }
+
+  /* ---------- Modal ---------- */
+  #productModal {
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    background:rgba(26,17,14,.62) !important;
+  }
+  #productModal > div {
+    border-radius:28px !important;
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 34px 90px rgba(0,0,0,.34) !important;
+    animation:cuModalIn .32s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes cuModalIn {
+    from { opacity:0; transform:translateY(24px) scale(.94); }
+    to { opacity:1; transform:none; }
+  }
+  #modalImagePanel {
+    background:color-mix(in srgb,var(--surface-2) 78%,transparent) !important;
+  }
+  #modalProductTitle {
+    font-size:clamp(1.55rem,3vw,2.25rem) !important;
+    letter-spacing:-.03em;
+  }
+  #modalWhatsApp,
+  #modalEmail {
+    border-radius:14px !important;
+    transition:transform .24s cubic-bezier(.34,1.56,.64,1),box-shadow .24s ease !important;
+  }
+  #modalWhatsApp:hover,
+  #modalEmail:hover {
+    transform:translateY(-4px) scale(1.02) !important;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top:2rem;
+    border-top:0 !important;
+    background:transparent !important;
+  }
+  footer > .wrap {
+    margin-bottom:1rem;
+    padding-top:2rem !important;
+    padding-bottom:2rem !important;
+    border:1px solid var(--line);
+    border-radius:28px;
+    background:color-mix(in srgb,var(--surface) 90%,transparent);
+    box-shadow:var(--cu-shadow-soft);
+  }
+
+  /* ---------- Ripple feedback ---------- */
+  .cu-ripple-host { position:relative !important; overflow:hidden !important; }
+  .cu-ripple {
     position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    opacity:0;
-  }
-
-  /* CLASSROOM */
-  .brand-classroom-piece { clip-path:inset(0 0 47% 0); }
-  .brand.is-assembling .brand-classroom-piece {
-    animation:brandClassroomJoin .62s cubic-bezier(.18,.82,.2,1) 1.35s forwards;
-  }
-
-  /* UNIFORMS */
-  .brand-uniforms-piece { clip-path:inset(43% 10% 18% 10%); }
-  .brand.is-assembling .brand-uniforms-piece {
-    animation:brandUniformsJoin .58s cubic-bezier(.18,.82,.2,1) 2.00s forwards;
-  }
-
-  /* Hide the A gold insert and the O button until the last lock-in */
-  .brand-a-cover,
-  .brand-o-cover {
-    position:absolute;
-    z-index:4;
-    background:var(--paper);
-    opacity:0;
-  }
-  .brand.is-assembling .brand-a-cover,
-  .brand.is-assembling .brand-o-cover { opacity:1; }
-
-  .brand-a-cover {
-    left:23.3%;
-    top:19.5%;
-    width:6.2%;
-    height:31%;
-    clip-path:polygon(50% 0,100% 100%,0 100%);
-  }
-  .brand-o-cover {
-    left:47.1%;
-    top:47.8%;
-    width:9.2%;
-    aspect-ratio:1;
+    width:10px;
+    height:10px;
     border-radius:50%;
+    pointer-events:none;
+    background:rgba(255,255,255,.42);
+    transform:translate(-50%,-50%) scale(0);
+    animation:cuRipple .58s ease-out forwards;
+    z-index:20;
+  }
+  @keyframes cuRipple {
+    to { transform:translate(-50%,-50%) scale(22); opacity:0; }
   }
 
-  /* Tagline types in, while the original image tagline remains excluded */
-  .brand-tagline {
-    position:absolute;
-    left:12.2%;
-    right:12.2%;
-    bottom:4.6%;
-    display:flex;
-    align-items:center;
-    gap:1%;
-    opacity:0;
-    z-index:5;
-  }
-  .brand.is-assembling .brand-tagline {
-    animation:brandTagOn .08s linear 2.58s forwards;
-  }
-  .brand-tagline::before,
-  .brand-tagline::after {
-    content:"";
-    height:2px;
-    flex:1;
-    min-width:7%;
-    border-radius:99px;
-    background:linear-gradient(90deg,#B88616,#E9BF45,#B88616);
-    transform:scaleX(0);
-  }
-  .brand.is-assembling .brand-tagline::before,
-  .brand.is-assembling .brand-tagline::after {
-    animation:brandLineGrow .34s var(--ease) 2.66s forwards;
-  }
-  .brand-tagline-text {
-    color:#8C1526;
-    font-family:'Archivo',sans-serif;
-    font-size:clamp(6px,.78vw,10px);
-    font-weight:800;
-    letter-spacing:.045em;
-    white-space:nowrap;
-    overflow:hidden;
+  /* ---------- Scroll progress + back to top ---------- */
+  #cu-scroll-progress {
+    position:fixed;
+    top:0;
+    left:0;
     width:0;
-    border-right:1px solid #8C1526;
-    line-height:1;
-  }
-  .brand.is-assembling .brand-tagline-text {
-    animation:
-      brandType .82s steps(27,end) 2.66s forwards,
-      brandCaret .38s step-end 2.66s 4;
+    height:3px;
+    z-index:10000;
+    background:linear-gradient(90deg,#C79B28,var(--maroon));
+    box-shadow:0 0 12px rgba(98,42,47,.28);
+    pointer-events:none;
   }
 
-  /* Final exploded A and O parts lock into the exact wordmark area */
-  .brand-a-piece {
-    position:absolute;
-    z-index:7;
-    left:23.65%;
-    top:24.2%;
-    width:5.25%;
-    aspect-ratio:.86;
-    background:linear-gradient(135deg,#FFE47B 0%,#D5A129 52%,#FFF0A6 100%);
-    clip-path:polygon(50% 0,100% 100%,0 100%);
+  #cu-backtop {
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:48px;
+    height:48px;
+    z-index:90;
+    display:grid;
+    place-items:center;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:color-mix(in srgb,var(--surface) 92%,transparent);
+    color:var(--maroon);
+    box-shadow:0 14px 34px rgba(55,31,25,.16);
+    backdrop-filter:blur(12px);
     opacity:0;
-    filter:drop-shadow(0 2px 3px rgba(90,58,0,.24));
+    transform:translateY(15px) scale(.9);
+    pointer-events:none;
+    transition:opacity .25s ease,transform .28s cubic-bezier(.34,1.56,.64,1);
   }
-  .brand-o-piece {
-    position:absolute;
-    z-index:7;
-    left:48.05%;
-    top:53%;
-    width:7.55%;
-    aspect-ratio:1;
-    border-radius:50%;
-    border:2px solid #D3A228;
-    background:#F1C852;
-    opacity:0;
-    box-shadow:inset 0 0 0 1px rgba(255,241,164,.9);
-  }
-  .brand-o-piece::before {
-    content:"";
-    position:absolute;
-    inset:22%;
-    border-radius:50%;
-    background:
-      radial-gradient(circle at 25% 25%,#8E6915 0 12%,transparent 13%),
-      radial-gradient(circle at 75% 25%,#8E6915 0 12%,transparent 13%),
-      radial-gradient(circle at 25% 75%,#8E6915 0 12%,transparent 13%),
-      radial-gradient(circle at 75% 75%,#8E6915 0 12%,transparent 13%);
-  }
-  .brand.is-assembling .brand-a-piece {
-    animation:brandALock .54s cubic-bezier(.18,.9,.22,1.14) 3.50s forwards;
-  }
-  .brand.is-assembling .brand-o-piece {
-    animation:brandOLock .58s cubic-bezier(.18,.9,.22,1.14) 3.50s forwards;
-  }
-
-  .brand.is-finishing .brand-exploded {
-    opacity:0;
-    transition:opacity .18s ease;
-  }
-  .brand.is-finishing .brand-final {
+  #cu-backtop.is-visible {
     opacity:1;
-    transition:opacity .18s ease;
+    transform:none;
+    pointer-events:auto;
+  }
+  #cu-backtop:hover { transform:translateY(-5px) rotate(-5deg) scale(1.05); }
+  #cu-backtop:active { transform:scale(.9); }
+
+  /* ---------- Existing requested tie cursor ---------- */
+  @media (pointer:fine) {
+    html, body, body *, a, button, .product-card, .filter-tab {
+      cursor:url('/images/shared/branding/tie-cursor.png') 16 1, pointer !important;
+    }
+    input, textarea, select, [contenteditable="true"] { cursor:text !important; }
   }
 
-  @keyframes brandCJoin {
-    from { opacity:0; transform:translate(-54px,-24px) rotate(-14deg) scale(1.22); filter:blur(6px); }
-    72% { opacity:1; transform:translate(3px,1px) rotate(2deg) scale(.98); filter:blur(0); }
-    to { opacity:1; transform:none; filter:blur(0); }
-  }
-  @keyframes brandPeopleJoin {
-    from { opacity:0; transform:translate(34px,26px) rotate(7deg) scale(.78); filter:blur(5px); }
-    72% { opacity:1; transform:translate(-2px,-1px) rotate(-1deg) scale(1.04); filter:blur(0); }
-    to { opacity:1; transform:none; filter:blur(0); }
-  }
-  @keyframes brandCoverAway { to { opacity:0; } }
-  @keyframes brandClassroomJoin {
-    from { opacity:0; transform:translateX(58px) rotate(1.5deg); filter:blur(5px); }
-    to { opacity:1; transform:none; filter:blur(0); }
-  }
-  @keyframes brandUniformsJoin {
-    from { opacity:0; transform:translateY(28px) scale(.95); filter:blur(4px); }
-    to { opacity:1; transform:none; filter:blur(0); }
-  }
-  @keyframes brandTagOn { to { opacity:1; } }
-  @keyframes brandLineGrow { to { transform:scaleX(1); } }
-  @keyframes brandType { to { width:100%; } }
-  @keyframes brandCaret { 50% { border-right-color:transparent; } }
-  @keyframes brandALock {
-    from { opacity:0; transform:translate(-82px,-52px) rotate(-58deg) scale(.45); }
-    72% { opacity:1; transform:translate(2px,1px) rotate(4deg) scale(1.08); }
-    to { opacity:1; transform:none; }
-  }
-  @keyframes brandOLock {
-    from { opacity:0; transform:translate(92px,48px) rotate(220deg) scale(.42); }
-    72% { opacity:1; transform:translate(-2px,1px) rotate(-5deg) scale(1.08); }
-    to { opacity:1; transform:none; }
+  /* ---------- Responsive ---------- */
+  @media (max-width:1060px) {
+    .header-inner { border-radius:20px; }
+    nav.main-nav button { padding:.58rem .62rem !important; }
+    #page-home .hero { grid-template-columns:1fr 1fr !important; }
   }
 
   @media (max-width:860px) {
-    .brand-circle-slot,
-    .brand-exploded-roundel { width:85px; height:85px; }
+    header.site-header { padding-top:8px; }
+    .header-inner {
+      min-height:74px;
+      width:calc(100% - 18px);
+      border-radius:19px;
+    }
+    nav.main-nav {
+      margin-top:8px;
+      border:1px solid var(--line);
+      border-radius:18px !important;
+      background:var(--cu-glass-strong) !important;
+      box-shadow:var(--cu-shadow-soft);
+    }
+    nav.main-nav button[aria-current="page"] { border-radius:12px !important; }
+    #page-home .hero {
+      grid-template-columns:1fr !important;
+      padding:1.25rem !important;
+      border-radius:26px;
+    }
+    #page-home .hero h1 { font-size:clamp(2.4rem,10vw,4.2rem) !important; }
+    .hero-product-showcase { min-height:380px !important; }
+    .product-filter-section {
+      align-items:stretch !important;
+      padding:.7rem !important;
+    }
+    .filter-right { width:100%; }
+    .filter-tabs {
+      width:100%;
+      overflow-x:auto;
+      flex-wrap:nowrap !important;
+      scrollbar-width:none;
+    }
+    .filter-tabs::-webkit-scrollbar { display:none; }
+    .filter-tab { white-space:nowrap; }
   }
+
   @media (max-width:600px) {
-    .brand-circle-slot,
-    .brand-exploded-roundel { width:65px; height:65px; }
-    .brand-final,
-    .brand-exploded { gap:.6rem; }
-    .brand-tagline-text { font-size:5px; }
+    body::before { background-size:28px 28px; }
+    .wrap { padding:0 .8rem !important; }
+    .header-inner { padding:.55rem .65rem !important; }
+    .brand img { max-width:145px !important; }
+    .brand > div:first-child { width:58px !important; height:58px !important; }
+    #page-home .hero { margin-top:.75rem; }
+    .hero-product-showcase { min-height:300px !important; }
+    .stats { grid-template-columns:1fr 1fr !important; }
+    .stat { padding:1.05rem !important; border-radius:16px; }
+    .supply-row { grid-template-columns:1fr !important; }
+    .product-filter-section { border-radius:18px; }
+    .search-input { max-width:none !important; }
+    .filter-right { align-items:stretch !important; }
+    .grid-3 { grid-template-columns:repeat(2,minmax(0,1fr)) !important; gap:.75rem !important; }
+    .product-card { border-radius:16px !important; }
+    .product-title { font-size:.9rem !important; padding:.8rem !important; }
+    #cu-backtop { right:14px; bottom:14px; width:44px; height:44px; }
+    #productModal > div { flex-direction:column !important; max-height:90vh !important; }
+    #modalImagePanel { flex:0 0 42vh !important; min-height:260px; }
   }
+
+  @media (max-width:420px) {
+    .grid-3 { grid-template-columns:1fr !important; }
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+    section.page.active,
+    .filter-tab.active,
+    .product-card,
+    .reveal,
+    .btn { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  }
+
 </style>
 
 </head>
@@ -1599,35 +1983,13 @@
 
 <header class="site-header">
   <div class="header-inner">
-            <button class="brand" data-nav="home" aria-label="Classroom Uniforms — go to home" style="width:100%;max-width:100%;height:auto;background:none;border:none;padding:0;margin:0;display:block;">
-        <span class="brand-final">
-          <span class="brand-circle-slot">
-            <img src="/images/shared/branding/circular-logo/image_0.png" alt="Classroom Uniforms Circular Logo">
-          </span>
-          <span class="brand-wordmark-slot">
-            <img src="/images/shared/branding/wordmark/image_1.png" alt="Classroom Uniforms Branding">
-          </span>
-        </span>
-
-        <span class="brand-exploded" aria-hidden="true">
-          <span class="brand-exploded-roundel">
-            <img class="brand-roundel-base" src="/images/shared/branding/circular-logo/image_0.png" alt="">
-            <span class="brand-people-cover"></span>
-            <img class="brand-people-piece" src="/images/shared/branding/circular-logo/image_0.png" alt="">
-          </span>
-
-          <span class="brand-exploded-wordmark">
-            <img class="brand-classroom-piece" src="/images/shared/branding/wordmark/image_1.png" alt="">
-            <img class="brand-uniforms-piece" src="/images/shared/branding/wordmark/image_1.png" alt="">
-            <span class="brand-a-cover"></span>
-            <span class="brand-o-cover"></span>
-            <span class="brand-a-piece"></span>
-            <span class="brand-o-piece"></span>
-            <span class="brand-tagline">
-              <span class="brand-tagline-text">FROM CLASSROOM TO THE WORLD</span>
-            </span>
-          </span>
-        </span>
+            <button class="brand" data-nav="home" aria-label="Classroom Uniforms — go to home" style="width: 100%; max-width: 100%; height: auto; background: none; border: none; cursor: pointer; padding: 0; margin: 0; display: flex; align-items: center; justify-content: flex-start; gap: 1rem;">
+        <div style="flex: 0 0 auto; width: 140px; height: 140px;">
+          <img src="/images/shared/branding/circular-logo/image_0.png" alt="Classroom Uniforms Circular Logo" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <div style="flex: 1; height: auto;">
+          <img src="/images/shared/branding/wordmark/image_1.png" alt="Classroom Uniforms Branding" style="width: 100%; height: auto; display: block;">
+        </div>
       </button>
 
     <nav class="main-nav" id="main-nav">
@@ -6495,53 +6857,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script src="/image-slots.js"></script>
 
+
+
+<div id="cu-scroll-progress" aria-hidden="true"></div>
+<button id="cu-backtop" type="button" aria-label="Back to top" title="Back to top">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path>
+  </svg>
+</button>
+
 <script>
 (function(){
-  const brand=document.querySelector('.site-header .brand');
-  if(!brand) return;
+  const progress=document.getElementById('cu-scroll-progress');
+  const backTop=document.getElementById('cu-backtop');
 
-  let timerA=null;
-  let timerB=null;
-  let autoPlayed=false;
-
-  function clearBrandTimers(){
-    if(timerA) clearTimeout(timerA);
-    if(timerB) clearTimeout(timerB);
-    timerA=timerB=null;
+  function updateScrollUI(){
+    const doc=document.documentElement;
+    const max=Math.max(1,doc.scrollHeight-window.innerHeight);
+    const ratio=Math.min(1,Math.max(0,window.scrollY/max));
+    if(progress) progress.style.width=(ratio*100)+'%';
+    if(backTop) backTop.classList.toggle('is-visible',window.scrollY>520);
   }
 
-  function playBrandAssembly(){
-    clearBrandTimers();
-    brand.classList.remove('is-finishing','is-assembling');
-    void brand.offsetWidth;
-    brand.classList.add('is-assembling');
+  window.addEventListener('scroll',updateScrollUI,{passive:true});
+  window.addEventListener('resize',updateScrollUI,{passive:true});
+  updateScrollUI();
 
-    // Crossfade to the exact original logo after the last A/O pieces lock in.
-    timerA=setTimeout(function(){
-      brand.classList.add('is-finishing');
-    },4200);
-
-    timerB=setTimeout(function(){
-      brand.classList.remove('is-assembling','is-finishing');
-    },4430);
+  if(backTop){
+    backTop.addEventListener('click',function(){
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
   }
 
-  function autoPlayOnce(){
-    if(autoPlayed) return;
-    autoPlayed=true;
-    setTimeout(playBrandAssembly,220);
-  }
-
-  // Once per refresh, after the whole page is loaded.
-  if(document.readyState==='complete') autoPlayOnce();
-  else window.addEventListener('load',autoPlayOnce,{once:true});
-
-  // Every logo click replays the same assembly, without covering the page.
-  brand.addEventListener('click',function(){
-    setTimeout(playBrandAssembly,40);
+  // Fun tactile ripple for buttons, tabs and cards without changing their actions.
+  document.addEventListener('pointerdown',function(e){
+    const host=e.target.closest('button,.btn,.filter-tab,.product-card');
+    if(!host) return;
+    host.classList.add('cu-ripple-host');
+    const rect=host.getBoundingClientRect();
+    const ripple=document.createElement('span');
+    ripple.className='cu-ripple';
+    ripple.style.left=(e.clientX-rect.left)+'px';
+    ripple.style.top=(e.clientY-rect.top)+'px';
+    host.appendChild(ripple);
+    window.setTimeout(function(){ ripple.remove(); },620);
   });
 
-  window.playClassroomLogoAnimation=playBrandAssembly;
+  // Remove inline hover leftovers from externally styled action buttons where safe.
+  document.querySelectorAll('.btn').forEach(function(btn){
+    btn.addEventListener('animationend',function(){
+      btn.classList.remove('cu-tap');
+    });
+  });
 })();
 </script>
 </body>
