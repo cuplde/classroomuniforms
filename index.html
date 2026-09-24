@@ -1672,7 +1672,7 @@
       <div class="section-head reveal">
         <span class="eyebrow">Our Collections</span>
         <h2>School Uniforms</h2>
-        <p>Complete summer and winter sets, blazers, sweaters and sportswear, made to each school's own specification.</p>
+        <p>A professionally organised range of summer wear, winter wear, shirts, sets, tunics, kurtis, aprons and institution-specific school uniforms.</p>
       </div>
 
       <!-- Search and Filter Section -->
@@ -1684,9 +1684,13 @@
           <div class="product-count school-count">57 products</div>
           <div class="filter-tabs">
             <button class="filter-tab active" data-filter="all" onclick="filterSchoolProducts('all')">All</button>
-<button class="filter-tab" data-filter="winter" onclick="filterSchoolProducts('winter')">Winter</button>
-            <button class="filter-tab" data-filter="summer" onclick="filterSchoolProducts('summer')">Summer</button>
-            <button class="filter-tab" data-filter="sport" onclick="filterSchoolProducts('sport')">Sport</button>
+            <button class="filter-tab" data-filter="summer" onclick="filterSchoolProducts('summer')">Summer Wear</button>
+            <button class="filter-tab" data-filter="winter" onclick="filterSchoolProducts('winter')">Winter Wear</button>
+            <button class="filter-tab" data-filter="shirts-sets" onclick="filterSchoolProducts('shirts-sets')">Shirts &amp; Sets</button>
+            <button class="filter-tab" data-filter="tunics-kurtis" onclick="filterSchoolProducts('tunics-kurtis')">Tunics &amp; Kurtis</button>
+            <button class="filter-tab" data-filter="aprons" onclick="filterSchoolProducts('aprons')">Aprons</button>
+            <button class="filter-tab" data-filter="dav" onclick="filterSchoolProducts('dav')">DAV</button>
+            <button class="filter-tab" data-filter="kv" onclick="filterSchoolProducts('kv')">KV</button>
             <span class="accessories-filter-group" style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:top;">
               <button class="filter-tab" data-filter="accessories" onclick="filterSchoolProducts('accessories')">Accessories</button>
               <span id="accessory-subtabs" style="display:none; flex-direction:row; gap:0.9rem; align-items:center; justify-content:center; margin-top:0.35rem; padding-left:0; border-left:none; white-space:nowrap;">
@@ -1695,223 +1699,213 @@
                 <button class="filter-tab accessory-subtab" data-filter="socks" onclick="filterSchoolProducts('socks')">Socks</button>
               </span>
             </span>
-            <button class="filter-tab" data-filter="dav" onclick="filterSchoolProducts('dav')">DAV</button>
-            <button class="filter-tab" data-filter="kv" onclick="filterSchoolProducts('kv')">KV</button>
-            <button class="filter-tab" data-filter="scout" onclick="filterSchoolProducts('scout')">Scout</button>
           </div>
         </div>
       </div>
 
       <!-- Products Grid -->
       <div class="products-grid school-products-grid grid-3">
-        <!-- Summer Product - Premium Summer Shirt -->
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/premium-summer-shirt/image_11.png" alt="Premium Summer Shirt" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer shirts-sets">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/summer/premium-summer-shirt/image_11.png" alt="Premium Summer Shirt" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
           <h3 class="product-title">Premium Summer Shirt</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>Fabric:</strong> 100% Premium Cotton Poplin (140 GSM). Breathable, lightweight, and perfect for warm weather. Soft-touch finish with excellent color retention.<br>
-            <strong>Stitching:</strong> Double-stitched seams with reinforced collar and cuff construction. Professional chain-stitch hems for durability. All thread matches fabric color for a polished look.
-          </p>
+          <p class="product-description">A premium school shirt with a clean formal cut, designed for a smart and consistent summer uniform appearance across everyday school and institutional use.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-<!-- Winter Products -->
-        <div class="product-card" data-category="winter">
-          <div class="product-image">Photo 3</div>
-          <h3 class="product-title">Winter Blazer</h3>
-          <p class="product-description">Warm and durable</p>
-          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
-        </div>
-        <!-- Sport Products -->
-        <div class="product-card" data-category="sport">
-          <div class="product-image">Photo 4</div>
-          <h3 class="product-title">Sports Jersey</h3>
-          <p class="product-description">Performance fabric</p>
-          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
-        </div>
-        <!-- DAV Products -->
-        <div class="product-card" data-category="dav">
-          <div class="product-image">Photo 6</div>
-          <h3 class="product-title">DAV Uniform Set</h3>
-          <p class="product-description">DAV school specification</p>
-          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
-        </div>
-        <!-- KV Products -->
-        <div class="product-card" data-category="kv">
-          <div class="product-image">Photo 7</div>
-          <h3 class="product-title">KV Uniform Set</h3>
-          <p class="product-description">Kendriya Vidyalaya spec</p>
-          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
-        </div>
-        <!-- Scout Products -->
-        <div class="product-card" data-category="scout">
-          <div class="product-image">Photo 8</div>
-          <h3 class="product-title">Scout Uniform</h3>
-          <p class="product-description">Scout organization wear</p>
-          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
-        </div>
-        <div class="product-card" data-category="dav">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/dav/dav-grey-melange-hooded-sweatshirt-set/image_34.png" alt="DAV Grey Melange Hooded Sweatshirt Set" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="aprons">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/aprons/3by4%20WHITE%20APPRON.png" alt="White 3/4 Sleeve School Apron" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">DAV Grey Melange Hooded Sweatshirt Set</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> DAV school students, winter comfort wear<br><strong>Fabric:</strong> Premium Poly-Cotton Blend (260 GSM) - Warm and durable<br><strong>Features:</strong> Hooded sweatshirt with official DAV emblem, lined hood with drawstrings, kangaroo pockets, paired with navy formal trousers. Soft fleece interior for maximum warmth. Perfect for winter outdoor activities and school events.<br><strong>Sizes:</strong> Available in XS to XL
-          </p>
+          <h3 class="product-title">White 3/4 Sleeve School Apron</h3>
+          <p class="product-description">A clean white 3/4 sleeve school apron designed for laboratory, practical and activity use, with a neat institutional appearance suitable for regular school programmes.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/boys-formal-beige-shirt-trousers-combo/image_35.png" alt="Boys Formal Beige Shirt & Trousers Combo" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer tunics-kurtis">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/tunics-kurtis/BOTTLE%20GREEN%20TUNIC.png" alt="Bottle Green Pinafore Tunic" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Boys Formal Beige Shirt & Trousers Combo</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> School assemblies and formal occasions<br><strong>Fabric:</strong> Premium Cotton Twill (150 GSM) - Breathable and wrinkle-resistant<br><strong>Features:</strong> Solid beige formal shirt with structured collar, full sleeves, and adjustable cuffs. Paired with navy formal trousers with crease retention. Black polished shoes included. Classic formal look for boys.<br><strong>Sizes:</strong> Available in all school sizes
-          </p>
+          <h3 class="product-title">Bottle Green Pinafore Tunic</h3>
+          <p class="product-description">Bottle green pinafore-style school tunic paired with a white short-sleeve shirt, creating a smart and coordinated girls' summer uniform for everyday school wear.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/girls-summer-school-uniform-sky-blue/image_36.png" alt="Girls Summer School Uniform - Sky Blue" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer shirts-sets dav">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/dav/DAV%20FULL%20SHIRT.png" alt="DAV Light Blue Full-Sleeve Shirt Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Girls Summer School Uniform - Sky Blue</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Girls school daily wear, summer season<br><strong>Fabric:</strong> 100% Cotton Poplin (140 GSM) - Light and breathable<br><strong>Features:</strong> Sky blue short-sleeved shirt with button-up front and chest pocket. Paired with navy blue pleated skirt with waistband adjustment. White cotton socks and comfortable black shoes. Comfortable fit for active school days.<br><strong>Sizes:</strong> All standard school sizes available
-          </p>
+          <h3 class="product-title">DAV Light Blue Full-Sleeve Shirt Set</h3>
+          <p class="product-description">A formal DAV school set featuring a light blue full-sleeve shirt with dark trousers, designed for a neat, disciplined and comfortable everyday school presentation.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/girls-summer-uniform-light-blue-variant/image_37.png" alt="Girls Summer Uniform - Light Blue Variant" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="winter dav">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/dav/DAV%20FULL%20SLEEVE%20WINTER%20JACKET.png" alt="DAV Blue Full-Sleeve Winter Tracksuit" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Girls Summer Uniform - Light Blue Variant</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Summer school uniforms, alternate day wear<br><strong>Fabric:</strong> Premium Cotton Poplin (140 GSM)<br><strong>Features:</strong> Light blue short-sleeved school shirt with standard collar and full button front. Navy blue accordion-pleated skirt with elastic waistband for comfortable wear. Coordinating white socks and school shoes. Provides cool, comfortable wear for warm weather.<br><strong>Sizes:</strong> XS to XL available
-          </p>
+          <h3 class="product-title">DAV Blue Full-Sleeve Winter Tracksuit</h3>
+          <p class="product-description">A coordinated DAV winter tracksuit with a full-sleeve blue top and matching trousers, suited to cooler school days, outdoor activity and organised institutional wear.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="kv">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/kv/kv-girls-green-pinafore-dress-set/image_38.png" alt="KV Girls Green Pinafore Dress Set" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer shirts-sets dav">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/dav/DAV%20HALF%20SHIRT%20WITH%20BLUE%20SKIRT.png" alt="DAV Light Blue Half-Sleeve Shirt & Navy Skirt Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">KV Girls Green Pinafore Dress Set</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Kendriya Vidyalaya girls students<br><strong>Fabric:</strong> Premium Wool-blend Suiting (200 GSM) - Durable and formal<br><strong>Features:</strong> Forest green pinafore dress with white stripe trim at hem. White short-sleeved undershirt with standard collar. White knee-high socks and black Mary Jane school shoes. Formal pinafore design with adjustable straps. Includes school emblem badge on chest.<br><strong>Sizes:</strong> All KV standard sizes
-          </p>
+          <h3 class="product-title">DAV Light Blue Half-Sleeve Shirt & Navy Skirt Set</h3>
+          <p class="product-description">A classic DAV girls' summer uniform combining a light blue half-sleeve shirt with a navy pleated skirt for a crisp, practical and coordinated school look.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="kv">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/kv/kv-girls-green-formal-pinafore-premium/image_39.png" alt="KV Girls Green Formal Pinafore - Premium" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer tunics-kurtis dav">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/dav/DAV%20KURTI%203by4.png" alt="DAV Grey 3/4 Sleeve Kurti Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">KV Girls Green Formal Pinafore - Premium</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> KV formal uniform requirements<br><strong>Fabric:</strong> Pure wool blend (220 GSM) - Professional finish<br><strong>Features:</strong> Dark green pinafore with classic pleated design and white trim details. Worn over white full-sleeve shirt. Complete with white socks and black formal shoes. Superior construction with reinforced seams. Badge and crest holder positioned on chest area.<br><strong>Sizes:</strong> Standard school sizing available
-          </p>
+          <h3 class="product-title">DAV Grey 3/4 Sleeve Kurti Set</h3>
+          <p class="product-description">A refined DAV grey kurti set with 3/4 sleeves and matching trousers, offering a modest, coordinated and professional uniform option for daily school wear.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/boys-formal-khaki-shirt-complete-set/image_40.png" alt="Boys Formal Khaki Shirt - Complete Set" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="winter dav">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/dav/DAV%20NUR%20SLEEVELESS%20JACKET.png" alt="DAV Nursery Sleeveless Winter Jacket Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Boys Formal Khaki Shirt - Complete Set</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Formal school events and assemblies<br><strong>Fabric:</strong> 100% Cotton Twill (160 GSM)<br><strong>Features:</strong> Khaki/beige formal shirt with structured collar and long sleeves. Paired with matching khaki trousers with professional crease. Black leather belt and polished black shoes complete the formal look. Smart appearance suitable for school official functions.<br><strong>Sizes:</strong> All available sizes from XS to XXL
-          </p>
+          <h3 class="product-title">DAV Nursery Sleeveless Winter Jacket Set</h3>
+          <p class="product-description">A DAV nursery winter set featuring a sleeveless navy jacket with contrast piping and matching trousers, designed for comfortable layering and a smart school appearance.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/summer-school-uniform-beige-formal-shirt/image_41.png" alt="Summer School Uniform - Beige Formal Shirt" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="winter dav">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/dav/DAV%20SWEATER%20FULL%20SLEEVE.png" alt="DAV Navy Full-Sleeve V-Neck Sweater Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Summer School Uniform - Beige Formal Shirt</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> School formal wear and summer events<br><strong>Fabric:</strong> Premium Cotton (150 GSM) - Comfortable and easy-care<br><strong>Features:</strong> Solid beige formal shirt with button-up front and standard collar. Long sleeves with cuff buttons. Tucked-in styling with cream/khaki trousers. Professional appearance suitable for school assemblies and formal occasions.<br><strong>Sizes:</strong> Full range of sizes available
-          </p>
+          <h3 class="product-title">DAV Navy Full-Sleeve V-Neck Sweater Set</h3>
+          <p class="product-description">A formal DAV winter uniform featuring a navy full-sleeve V-neck sweater with contrast trim and coordinated trousers for warm, neat and polished school wear.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="kv">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/kv/kv-girls-green-pinafore-classic-design/image_42.png" alt="KV Girls Green Pinafore - Classic Design" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="winter dav">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/dav/DAV%20WINTER%20FULL%20JACKET.png" alt="DAV Navy Full-Zip Winter Jacket Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">KV Girls Green Pinafore - Classic Design</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> KV girls daily school uniform<br><strong>Fabric:</strong> Premium Wool-Cotton blend (210 GSM)<br><strong>Features:</strong> Forest green pinafore dress with traditional pleated front and white trim at bottom. Worn with white short-sleeve undershirt. White ankle socks and black school shoes. Clean, traditional KV uniform design with durability for daily wear.<br><strong>Sizes:</strong> XS to XL available
-          </p>
+          <h3 class="product-title">DAV Navy Full-Zip Winter Jacket Set</h3>
+          <p class="product-description">A practical DAV winter uniform with a navy full-zip jacket and matching trousers, providing a clean institutional look with easy layering for colder school days.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="scout">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/scout/scout-uniform-green-pinafore-dress/image_43.png" alt="Scout Uniform - Green Pinafore Dress" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer shirts-sets">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/shirts-sets/FULL%20MINI%20%23%20SHIRT.png" alt="Mini Blue Checked Full-Sleeve School Shirt" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Scout Uniform - Green Pinafore Dress</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Scout organization girls, official events<br><strong>Fabric:</strong> Premium poly-cotton (180 GSM) - Durable for outdoor activities<br><strong>Features:</strong> Official green pinafore dress with white undershirt and coordinating accessories. White socks and black shoes. Scout badges and insignias can be attached. Designed to withstand outdoor activities while maintaining professional appearance.<br><strong>Sizes:</strong> All sizes from child to adult
-          </p>
+          <h3 class="product-title">Mini Blue Checked Full-Sleeve School Shirt</h3>
+          <p class="product-description">A blue checked full-sleeve school shirt with a formal collar and coordinated dark trousers, combining a traditional check pattern with a tidy everyday uniform finish.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/boys-summer-uniform-cream-formal-shirt/image_44.png" alt="Boys Summer Uniform - Cream Formal Shirt" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer tunics-kurtis">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/tunics-kurtis/GREY%20TUNIC.png" alt="Grey Pinafore Tunic Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Boys Summer Uniform - Cream Formal Shirt</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Boys daily school wear, summer season<br><strong>Fabric:</strong> 100% Premium Cotton (145 GSM)<br><strong>Features:</strong> Cream/light beige formal shirt with full button front and structured collar. Comfortable fit with long sleeves and adjustable cuffs. Paired with navy trousers and black shoes. Versatile for both daily school and official functions.<br><strong>Sizes:</strong> All available sizes
-          </p>
+          <h3 class="product-title">Grey Pinafore Tunic Set</h3>
+          <p class="product-description">A smart grey pinafore tunic worn over a white short-sleeve shirt, designed as a polished girls' school uniform with a structured and comfortable everyday silhouette.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/girls-school-uniform-blue-skirt-set/image_45.png" alt="Girls School Uniform - Blue Skirt Set" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer tunics-kurtis">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/tunics-kurtis/HALF%20WHITE%20KURTI.png" alt="White Half-Sleeve Kurti Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Girls School Uniform - Blue Skirt Set</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Girls daily school wear<br><strong>Fabric:</strong> Cotton blend (140 GSM) - Durable and comfortable<br><strong>Features:</strong> Sky blue short-sleeve shirt with button front and chest pocket. Navy blue accordion-pleated skirt with elastic waistband for comfortable movement. White socks and black shoes. Perfect balance of comfort and professional appearance.<br><strong>Sizes:</strong> Full range available
-          </p>
+          <h3 class="product-title">White Half-Sleeve Kurti Set</h3>
+          <p class="product-description">A clean white half-sleeve kurti with matching trousers, offering a simple, modest and professional school uniform option suitable for regular institutional wear.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/boys-formal-school-uniform-beige-set/image_46.png" alt="Boys Formal School Uniform - Beige Set" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer shirts-sets">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/shirts-sets/HALF%20YELLOW%20BUTTER%20SHIRT%20WITH%20HALF%20PANT.png" alt="Butter Yellow Half-Sleeve Shirt & Navy Shorts Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Boys Formal School Uniform - Beige Set</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> School formal events and daily wear<br><strong>Fabric:</strong> Premium Cotton Twill (160 GSM)<br><strong>Features:</strong> Beige formal shirt with professional collar and full-length sleeves. Paired with matching beige formal trousers with perfect crease retention. Black leather belt and polished shoes. Ideal for assemblies and formal school functions.<br><strong>Sizes:</strong> All standard sizes available
-          </p>
+          <h3 class="product-title">Butter Yellow Half-Sleeve Shirt & Navy Shorts Set</h3>
+          <p class="product-description">A cheerful butter-yellow half-sleeve school shirt paired with navy shorts, creating a comfortable and coordinated summer uniform suited to younger students.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/complete-girls-school-uniform-package/image_47.png" alt="Complete Girls School Uniform Package" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer shirts-sets">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/shirts-sets/KHAAKI%20FULLPANT%20WITH%20FULL%20SLEEVE%20SHIRT.png" alt="Khaki Full-Sleeve Shirt & Trouser Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Complete Girls School Uniform Package</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Comprehensive school uniform solution<br><strong>Fabric:</strong> Premium Cotton-Poly blend<br><strong>Features:</strong> Complete uniform package including shirt, skirt, socks, shoes and accessories. Professional school appearance with all necessary components. Designed for girls students. Quality construction suitable for daily school use throughout academic year.<br><strong>Sizes:</strong> Multiple sizes available
-          </p>
+          <h3 class="product-title">Khaki Full-Sleeve Shirt & Trouser Set</h3>
+          <p class="product-description">A coordinated khaki full-sleeve shirt and trouser uniform with a structured formal appearance, suitable for schools seeking a classic and disciplined everyday look.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="scout">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/scout/scout-kv-girls-uniform-green-pinafore/image_48.png" alt="Scout/KV Girls Uniform - Green Pinafore" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer shirts-sets kv">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/kv/KV%20147%20SKIRT.png" alt="KV 147 Grey Skirt Uniform Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Scout/KV Girls Uniform - Green Pinafore</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Scout and KV affiliated girls students<br><strong>Fabric:</strong> Durable Wool-Cotton blend (200 GSM)<br><strong>Features:</strong> Official green pinafore dress with traditional design. White short-sleeve undershirt and formal white socks. Black school shoes. Multi-purpose uniform suitable for both daily wear and official Scout functions. Badge positioning for organization insignias.<br><strong>Sizes:</strong> Available in all school sizes
-          </p>
+          <h3 class="product-title">KV 147 Grey Skirt Uniform Set</h3>
+          <p class="product-description">A KV 147 girls' uniform featuring a white shirt and grey pleated skirt with accent detailing, designed for a neat, balanced and recognisable school presentation.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="summer">
-          <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px;">
-            <img src="/images/uniforms/school-uniforms/summer/boys-formal-summer-shirt-cream-twill/image_49.png" alt="Boys Formal Summer Shirt - Cream Twill" style="width: 100%; height: 100%; object-fit: cover;">
+        <div class="product-card" data-category="summer tunics-kurtis kv">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/kv/KV%20147%20TUNIC.png" alt="KV 147 Grey Pinafore Tunic Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
           </div>
-          <h3 class="product-title">Boys Formal Summer Shirt - Cream Twill</h3>
-          <p class="product-description" style="font-size: 0.9rem; line-height: 1.4;">
-            <strong>For:</strong> Boys school formal requirements<br><strong>Fabric:</strong> Premium Cotton Twill (155 GSM)<br><strong>Features:</strong> Cream/beige formal shirt with sturdy construction and professional collar. Long sleeves with reinforced cuffs for durability. Matching trousers with permanent crease. Black formal shoes and belt included. Perfect for formal school occasions and daily professional appearance.<br><strong>Sizes:</strong> All available sizes
-          </p>
+          <h3 class="product-title">KV 147 Grey Pinafore Tunic Set</h3>
+          <p class="product-description">A KV 147 grey pinafore tunic worn with a white shirt, combining a structured school silhouette with a practical and polished everyday uniform appearance.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card tie-product-card" data-category="ties accessories">
+        <div class="product-card" data-category="summer tunics-kurtis kv">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/kv/KV%20KURTI%20HALF%20SLEEVE.png" alt="KV Checked Half-Sleeve Kurti Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
+          </div>
+          <h3 class="product-title">KV Checked Half-Sleeve Kurti Set</h3>
+          <p class="product-description">A KV checked half-sleeve kurti set with coordinated trousers, presenting a distinctive check pattern in a comfortable and professional school uniform format.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="winter kv">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/kv/KV%20WINTER%20FULL%20SLEEVE%20JACKET.png" alt="KV Charcoal Full-Sleeve Winter Jacket Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
+          </div>
+          <h3 class="product-title">KV Charcoal Full-Sleeve Winter Jacket Set</h3>
+          <p class="product-description">A KV winter set featuring a charcoal full-sleeve zip jacket with dark trousers, designed for comfortable cold-weather school use with a clean institutional finish.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="summer shirts-sets">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/shirts-sets/MAROON%20FULL%20PANT%20WITH%20WHITE%20HALF%20SHIRT.png" alt="White Half-Sleeve Shirt & Maroon Trouser Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
+          </div>
+          <h3 class="product-title">White Half-Sleeve Shirt & Maroon Trouser Set</h3>
+          <p class="product-description">A crisp white half-sleeve school shirt paired with maroon trousers, delivering a strong colour contrast and a smart, coordinated summer uniform appearance.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="summer tunics-kurtis">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/tunics-kurtis/MAROON%20TUNIC.png" alt="Maroon Pinafore Tunic Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
+          </div>
+          <h3 class="product-title">Maroon Pinafore Tunic Set</h3>
+          <p class="product-description">A maroon pinafore tunic worn over a white short-sleeve shirt, designed as a classic girls' school uniform with a neat pleated shape and coordinated finish.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="summer shirts-sets">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/shirts-sets/MINI%20BLUE%20%23%20HALF%20SHIRT.png" alt="Mini Blue Checked Half-Sleeve School Shirt" style="width:100%;height:100%;object-fit:contain;object-position:center;">
+          </div>
+          <h3 class="product-title">Mini Blue Checked Half-Sleeve School Shirt</h3>
+          <p class="product-description">A blue checked half-sleeve school shirt paired with dark trousers, combining a fresh check pattern with a comfortable and tidy warm-weather uniform style.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="summer shirts-sets">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/shirts-sets/SSM%20%23%20FULL%20SHIRT.png" alt="SSM Checked Full-Sleeve School Shirt" style="width:100%;height:100%;object-fit:contain;object-position:center;">
+          </div>
+          <h3 class="product-title">SSM Checked Full-Sleeve School Shirt</h3>
+          <p class="product-description">An SSM checked full-sleeve school shirt with dark trousers, designed for a distinctive, formal and coordinated school appearance while retaining everyday practicality.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="summer shirts-sets">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/shirts-sets/SSM%20%23%20HALF%20SHIRT%20WITH%20HALF%20PANT.png" alt="SSM Checked Half-Sleeve Shirt & Shorts Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
+          </div>
+          <h3 class="product-title">SSM Checked Half-Sleeve Shirt & Shorts Set</h3>
+          <p class="product-description">An SSM checked half-sleeve shirt paired with dark shorts, creating a practical summer school set with a smart check pattern and comfortable student-friendly styling.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="summer shirts-sets">
+          <div class="product-image" style="width:100%;height:300px;overflow:hidden;border-radius:8px;background:var(--surface);">
+            <img src="/images/uniforms/school-uniforms/shirts-sets/WHITE%20HALF%20SLEEVE%20SHIRT%20WITH%20SKIRT.png" alt="White Half-Sleeve Shirt & White Skirt Set" style="width:100%;height:100%;object-fit:contain;object-position:center;">
+          </div>
+          <h3 class="product-title">White Half-Sleeve Shirt & White Skirt Set</h3>
+          <p class="product-description">A coordinated white half-sleeve shirt and pleated skirt uniform with dark belt detailing, presenting a clean, formal and polished summer school appearance.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+<div class="product-card tie-product-card" data-category="ties accessories">
           <div class="product-image" style="width: 100%; height: 300px; overflow: hidden; border-radius: 8px; background: #fff;">
             <img src="/images/uniforms/school-uniforms/accessories/school-tie/tie-01.png" alt="Green & Gold Striped School Tie" style="width: 100%; height: 100%; object-fit: contain; background: #fff; padding: 1rem;">
           </div>
