@@ -1891,6 +1891,99 @@
     }
   }
 
+
+
+  /* ==========================================================
+     FULL-FRAME PRODUCT IMAGE FIX
+     No crop, no fake background, no visible frame.
+     User explicitly prefers slight stretch over cutting heads/feet.
+     ========================================================== */
+
+  /* Home hero image: show the whole source image edge-to-edge. */
+  .hero-product-showcase {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .hero-product-showcase::after {
+    display: none !important;
+  }
+  .hero-product-showcase .product-image,
+  .hero-product-showcase img.product-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important;
+    object-position: center center !important;
+    border: 0 !important;
+    border-radius: inherit !important;
+    box-shadow: none !important;
+    transform: none !important;
+    filter: none !important;
+    background: transparent !important;
+  }
+  .hero-product-showcase:hover .product-image,
+  .hero-product-showcase:hover img.product-image {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Uniform catalogue cards: completely fill the photo area without cropping. */
+  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card) .product-image,
+  #page-corporate-uniforms .corporate-products-grid .product-card .product-image {
+    aspect-ratio: 3 / 4 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+  }
+
+  /* Remove the previous blurred/fake backdrop that looked like a border. */
+  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card) .product-image::before,
+  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card) .product-image::after,
+  #page-corporate-uniforms .corporate-products-grid .product-card .product-image::before,
+  #page-corporate-uniforms .corporate-products-grid .product-card .product-image::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card) .product-image img,
+  #page-corporate-uniforms .corporate-products-grid .product-card .product-image img {
+    position: relative !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important;
+    object-position: center center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: inherit !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card):hover .product-image img,
+  #page-corporate-uniforms .corporate-products-grid .product-card:hover .product-image img {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Remove any remaining visible frame from the model cards themselves. */
+  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card),
+  #page-corporate-uniforms .corporate-products-grid .product-card {
+    border: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* Accessories intentionally remain clean product shots on white. */
+  .tie-product-card .product-image,
+  .belt-product-card .product-image,
+  .sock-product-card .product-image {
+    background: #fff !important;
+  }
+
 </style>
 
 </head>
