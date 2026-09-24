@@ -1186,6 +1186,24 @@
     font-size: 1rem;
   }
 
+  /* School catalogue: fill the full product-image frame.
+     Accessories intentionally remain contained so product-only PNGs are not cropped. */
+  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card) .product-image {
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+
+  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card) .product-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    background: transparent !important;
+  }
+
   .product-title {
     padding: 1rem 0.8rem;
     color: var(--ink);
