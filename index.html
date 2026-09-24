@@ -2142,6 +2142,79 @@
       border-radius: 10px !important;
     }
   }
+
+
+  /* ===== FILTER + COMPLETE FRAME FIX ===== */
+
+  /* Filtering must beat the catalogue card display:flex !important rule. */
+  .school-products-grid .product-card.is-filtered-out,
+  .corporate-products-grid .product-card.is-filtered-out {
+    display: none !important;
+  }
+
+  /* One complete rounded rectangle behind every catalogue photo.
+     The image stays fully visible inside it; the frame itself is always complete. */
+  .school-products-grid .product-card .product-image,
+  .corporate-products-grid .product-card .product-image {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 4 / 5 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 20px !important;
+    background: var(--surface-2) !important;
+    box-shadow: 0 10px 24px rgba(60,35,29,.10) !important;
+  }
+
+  .school-products-grid .product-card .product-image::before,
+  .school-products-grid .product-card .product-image::after,
+  .corporate-products-grid .product-card .product-image::before,
+  .corporate-products-grid .product-card .product-image::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .school-products-grid .product-card .product-image img,
+  .corporate-products-grid .product-card .product-image img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    padding: 8px !important;
+    margin: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 20px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .school-products-grid .product-card:hover .product-image img,
+  .corporate-products-grid .product-card:hover .product-image img {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Accessories keep a white completed frame. */
+  .tie-product-card .product-image,
+  .belt-product-card .product-image,
+  .sock-product-card .product-image {
+    background: #fff !important;
+  }
+
+  @media (max-width:600px) {
+    .school-products-grid .product-card .product-image,
+    .corporate-products-grid .product-card .product-image,
+    .school-products-grid .product-card .product-image img,
+    .corporate-products-grid .product-card .product-image img {
+      border-radius: 15px !important;
+    }
+  }
 </style>
 
 </head>
@@ -6813,32 +6886,35 @@
   function filterCorporateProducts(category) {
     const cards = document.querySelectorAll('.corporate-products-grid .product-card');
     const tabs = document.querySelectorAll('#page-corporate-uniforms .filter-tab');
+    const count = document.querySelector('.corporate-count');
 
-    // Update active tab
     tabs.forEach(tab => {
-      tab.classList.remove('active');
-      if (tab.getAttribute('data-filter') === category) {
-        tab.classList.add('active');
-      }
+      tab.classList.toggle('active', tab.getAttribute('data-filter') === category);
     });
 
-    // Filter products with a short staggered reveal.
     let revealIndex = 0;
+    let visibleCount = 0;
+
     cards.forEach(card => {
-      if (category === 'all' || card.getAttribute('data-category') === category) {
-        card.style.display = '';
+      const matches = category === 'all' || card.getAttribute('data-category') === category;
+      card.classList.toggle('is-filtered-out', !matches);
+
+      if (matches) {
+        visibleCount++;
         card.style.animation = 'none';
         void card.offsetWidth;
         card.style.animation = 'cuCardIn .34s var(--ease) both';
-        card.style.animationDelay = Math.min(revealIndex * 28, 280) + 'ms';
+        card.style.animationDelay = Math.min(revealIndex * 40, 180) + 'ms';
         revealIndex++;
       } else {
-        card.style.display = 'none';
         card.style.animation = 'none';
       }
     });
-  }
 
+    if (count) {
+      count.textContent = visibleCount + (visibleCount === 1 ? ' product' : ' products');
+    }
+  }
   /* Search functionality for School Uniforms */
   const schoolSearch = document.getElementById('school-search');
   if (schoolSearch) {
@@ -6863,19 +6939,28 @@
   const corporateSearch = document.getElementById('corporate-search');
   if (corporateSearch) {
     corporateSearch.addEventListener('input', function() {
-      const query = this.value.toLowerCase();
+      const query = this.value.toLowerCase().trim();
       const cards = document.querySelectorAll('.corporate-products-grid .product-card');
+      const activeTab = document.querySelector('#page-corporate-uniforms .filter-tab.active');
+      const activeCategory = activeTab ? activeTab.getAttribute('data-filter') : 'all';
+      const count = document.querySelector('.corporate-count');
+      let visibleCount = 0;
 
       cards.forEach(card => {
         const title = card.querySelector('.product-title').textContent.toLowerCase();
         const description = card.querySelector('.product-description').textContent.toLowerCase();
+        const category = card.getAttribute('data-category');
+        const categoryMatch = activeCategory === 'all' || category === activeCategory;
+        const searchMatch = !query || title.includes(query) || description.includes(query);
+        const show = categoryMatch && searchMatch;
 
-        if (title.includes(query) || description.includes(query)) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+        card.classList.toggle('is-filtered-out', !show);
+        if (show) visibleCount++;
       });
+
+      if (count) {
+        count.textContent = visibleCount + (visibleCount === 1 ? ' product' : ' products');
+      }
     });
   }
 
