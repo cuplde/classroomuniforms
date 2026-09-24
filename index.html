@@ -2215,6 +2215,68 @@
       border-radius: 15px !important;
     }
   }
+
+
+  /* ===== BORDERLESS CATALOGUE IMAGE FIX ===== */
+  /* Keep the equal 4:5 layout but make the frame itself completely invisible. */
+  .school-products-grid .product-card .product-image,
+  .corporate-products-grid .product-card .product-image {
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .school-products-grid .product-card .product-image::before,
+  .school-products-grid .product-card .product-image::after,
+  .corporate-products-grid .product-card .product-image::before,
+  .corporate-products-grid .product-card .product-image::after {
+    display: none !important;
+    content: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .school-products-grid .product-card .product-image img,
+  .corporate-products-grid .product-card .product-image img {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+  }
+
+  .school-products-grid .product-card,
+  .corporate-products-grid .product-card {
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Accessories also have no outer frame/background. */
+  .tie-product-card .product-image,
+  .belt-product-card .product-image,
+  .sock-product-card .product-image {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .tie-product-card .product-image img,
+  .belt-product-card .product-image img,
+  .sock-product-card .product-image img {
+    background: transparent !important;
+    padding: 0 !important;
+  }
 </style>
 
 </head>
