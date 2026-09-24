@@ -6014,13 +6014,69 @@ const productDetails = {
   }
 };
 
-function openProductModal(productName, imgSrc) {
+function buildProfessionalDescription(productName, card) {
+  const title = (productName || '').toLowerCase();
+  const categories = card ? (card.getAttribute('data-category') || '').toLowerCase() : '';
+  const existing = card ? card.querySelector('.product-description') : null;
+  const existingHtml = existing ? existing.innerHTML.trim() : '';
+  const existingText = existing ? existing.textContent.trim() : '';
+
+  // Preserve any detailed description already written for a product.
+  if (existingText.length > 120 && !/add description|available on enquiry|official pattern|warm and durable|performance fabric/i.test(existingText)) {
+    return existingHtml;
+  }
+
+  if (/tie/.test(title) || /ties/.test(categories)) {
+    return '<strong>Professional school accessory:</strong> A smart tie designed to complete a coordinated school uniform with a neat, disciplined appearance.<br><br><strong>Suitable for:</strong> Daily school wear, assemblies, formal events and institutional uniform programmes.<br><br><strong>Customisation:</strong> Colours, stripe patterns, crests and bulk quantities can be matched to school requirements.';
+  }
+  if (/belt/.test(title) || /belts/.test(categories)) {
+    return '<strong>Professional school accessory:</strong> A durable school belt designed to give the uniform a clean, structured and coordinated finish.<br><br><strong>Suitable for:</strong> Daily school wear, formal uniforms and complete institutional uniform sets.<br><br><strong>Customisation:</strong> Belt colours, buckle styles, school emblems and bulk quantities can be supplied to specification.';
+  }
+  if (/sock/.test(title) || /socks/.test(categories)) {
+    return '<strong>School uniform essential:</strong> Comfortable school socks designed to complement formal and everyday uniform sets while maintaining a neat appearance throughout the school day.<br><br><strong>Suitable for:</strong> Daily wear, sports uniforms and seasonal school requirements.<br><br><strong>Options:</strong> Colours, stripe patterns, lengths and bulk quantities can be matched to institutional specifications.';
+  }
+  if (/blazer|jacket|sweater|winter/.test(title) || /winter/.test(categories)) {
+    return '<strong>Winter school uniform:</strong> Designed for a smart, formal appearance with practical comfort for cooler school days.<br><br><strong>Suitable for:</strong> Daily winter wear, assemblies, ceremonies and complete school uniform programmes.<br><br><strong>Customisation:</strong> Colours, sizing, trims, buttons, crests and embroidery can be produced to school specifications.';
+  }
+  if (/sport|jersey|track|t-shirt/.test(title) || /sport/.test(categories)) {
+    return '<strong>School sportswear:</strong> Designed for active movement, team presentation and dependable everyday use during sports and physical activities.<br><br><strong>Suitable for:</strong> PE classes, sports days, training and school team requirements.<br><br><strong>Customisation:</strong> School colours, logos, house details and size ranges can be produced for bulk institutional orders.';
+  }
+  if (/dav/.test(title) || /dav/.test(categories)) {
+    return '<strong>DAV school uniform:</strong> A coordinated uniform item intended for DAV school requirements with a neat, consistent institutional appearance.<br><br><strong>Suitable for:</strong> Daily school wear and complete DAV uniform programmes.<br><br><strong>Customisation:</strong> Sizing, approved colours, badges and finishing can be matched to the ordering school\'s specification.';
+  }
+  if (/kv|kendriya/.test(title) || /kv/.test(categories)) {
+    return '<strong>KV school uniform:</strong> A coordinated uniform item designed for Kendriya Vidyalaya-style school requirements with a clean and formal presentation.<br><br><strong>Suitable for:</strong> Daily school wear and complete institutional uniform supply.<br><br><strong>Customisation:</strong> Sizing, colours, badges and finishing can be produced according to the required school specification.';
+  }
+  if (/scout/.test(title) || /scout/.test(categories)) {
+    return '<strong>Scout uniform item:</strong> Designed for a neat, organised appearance suitable for school Scout activities and formal group presentation.<br><br><strong>Suitable for:</strong> Scout programmes, camps, ceremonies and institutional requirements.<br><br><strong>Customisation:</strong> Badges, insignia placement, colours and sizing can be adapted to the required specification.';
+  }
+  if (/hospital|healthcare|medical|nurse|doctor|scrub/.test(title) || /healthcare/.test(categories)) {
+    return '<strong>Healthcare uniform:</strong> Professional institutional wear designed for a clean, coordinated appearance in medical and healthcare environments.<br><br><strong>Suitable for:</strong> Hospitals, clinics, laboratories and support teams.<br><br><strong>Customisation:</strong> Colours, sizing, department identification, embroidery and bulk supply can be tailored to organisational requirements.';
+  }
+  if (/hotel|hospitality|chef|housekeeping|restaurant/.test(title) || /hospitality/.test(categories)) {
+    return '<strong>Hospitality uniform:</strong> Professional workwear designed to create a polished and consistent presentation for guest-facing and service teams.<br><br><strong>Suitable for:</strong> Hotels, restaurants, housekeeping, food service and hospitality operations.<br><br><strong>Customisation:</strong> Colours, sizing, branding and role-specific details can be tailored for bulk institutional orders.';
+  }
+  if (/security|guard/.test(title) || /security/.test(categories)) {
+    return '<strong>Security uniform:</strong> Professional workwear designed for a disciplined, identifiable and coordinated appearance across security teams.<br><br><strong>Suitable for:</strong> Security agencies, institutions, campuses and facility-management teams.<br><br><strong>Customisation:</strong> Colours, sizing, insignia, embroidery and role-specific details can be supplied to organisational requirements.';
+  }
+  if (/corporate|office|formal shirt|executive/.test(title) || /corporate/.test(categories)) {
+    return '<strong>Corporate uniform:</strong> Professional workwear designed to give teams a consistent, polished and brand-aligned appearance.<br><br><strong>Suitable for:</strong> Offices, front-desk teams, institutions and corporate staff programmes.<br><br><strong>Customisation:</strong> Colours, sizing, logos, embroidery and coordinated combinations can be produced for bulk orders.';
+  }
+  if (/shirt|pant|trouser|skirt|pinafore|uniform|summer/.test(title) || /summer/.test(categories)) {
+    return '<strong>School uniform:</strong> Designed for a neat, comfortable and consistent appearance suitable for regular school use.<br><br><strong>Suitable for:</strong> Daily classes, assemblies and complete institutional uniform programmes.<br><br><strong>Customisation:</strong> Colours, sizing, trims, school crests and embroidery can be matched to the required school specification.';
+  }
+
+  return '<strong>Institutional uniform product:</strong> Designed for a professional, coordinated appearance with dependable everyday use in school, corporate or institutional environments.<br><br><strong>Customisation:</strong> Colours, sizing, branding and bulk quantities can be tailored to your organisation\'s requirements. Contact us for specifications, sampling and pricing.';
+}
+
+function openProductModal(productName, imgSrc, card) {
   const modal = document.getElementById('productModal');
-  const details = productDetails[productName] || { description: 'Product details available on enquiry.' };
+  const details = productDetails[productName];
+  const description = details && details.description ? details.description : buildProfessionalDescription(productName, card);
 
   document.getElementById('modalProductTitle').textContent = productName;
-  document.getElementById('modalProductDescription').innerHTML = details.description;
-  document.getElementById('modalImg').src = imgSrc || details.image;
+  document.getElementById('modalProductDescription').innerHTML = description;
+  document.getElementById('modalImg').src = imgSrc || (details && details.image) || '';
 
   const isAccessoryImage = /school tie|school belt|school socks/i.test(productName);
   const modalPanel = document.getElementById('modalImagePanel');
@@ -6058,7 +6114,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const title = this.querySelector('.product-title').textContent;
       const img = this.querySelector('.product-image img') || this.querySelector('.product-image');
       const imgSrc = img.src || img.querySelector('img')?.src;
-      openProductModal(title, imgSrc);
+      openProductModal(title, imgSrc, this);
     });
   });
 });
