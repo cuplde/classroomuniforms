@@ -1948,6 +1948,118 @@
     }
   }
 
+
+
+  /* ===== EQUAL CATALOGUE CARD SYSTEM ===== */
+  /* Same visual size for every School + Corporate product card.
+     Photos keep their real proportions: no crop, no stretch. */
+
+  .school-products-grid,
+  .corporate-products-grid {
+    align-items: stretch !important;
+  }
+
+  .school-products-grid .product-card,
+  .corporate-products-grid .product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* One equal frame size across all catalogue images */
+  .school-products-grid .product-card .product-image,
+  .corporate-products-grid .product-card .product-image {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 5 !important;
+    min-height: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 18px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove any older decorative/fake frame layers */
+  .school-products-grid .product-card .product-image::before,
+  .school-products-grid .product-card .product-image::after,
+  .corporate-products-grid .product-card .product-image::before,
+  .corporate-products-grid .product-card .product-image::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  /* Keep every person/product fully visible and undistorted */
+  .school-products-grid .product-card .product-image img,
+  .corporate-products-grid .product-card .product-image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .school-products-grid .product-card:hover .product-image img,
+  .corporate-products-grid .product-card:hover .product-image img {
+    transform: none !important;
+  }
+
+  /* Keep names aligned so cards read as one consistent catalogue */
+  .school-products-grid .product-title,
+  .corporate-products-grid .product-title {
+    min-height: 3.25rem !important;
+    margin: 0 !important;
+    padding: .78rem .12rem .2rem !important;
+    display: flex !important;
+    align-items: flex-start !important;
+  }
+
+  /* Accessories use the same size but retain a clean white product-shot field */
+  .tie-product-card .product-image,
+  .belt-product-card .product-image,
+  .sock-product-card .product-image {
+    aspect-ratio: 4 / 5 !important;
+    background: #fff !important;
+  }
+
+  .tie-product-card .product-image img,
+  .belt-product-card .product-image img,
+  .sock-product-card .product-image img {
+    object-fit: contain !important;
+    padding: .55rem !important;
+    background: #fff !important;
+  }
+
+  @media (max-width:600px) {
+    .school-products-grid .product-card .product-image,
+    .corporate-products-grid .product-card .product-image {
+      border-radius: 14px !important;
+    }
+
+    .school-products-grid .product-title,
+    .corporate-products-grid .product-title {
+      min-height: 2.8rem !important;
+    }
+  }
 </style>
 
 </head>
