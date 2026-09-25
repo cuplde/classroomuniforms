@@ -7206,3 +7206,77 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+/* ===== REMOVE FRAME / BORDER COMPLETELY ===== */
+
+/* No outer frame, no background box, no shadow */
+.school-products-grid .product-card .product-image,
+.corporate-products-grid .product-card .product-image {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+/* Remove the fake frame layers */
+.school-products-grid .product-card .product-image::before,
+.school-products-grid .product-card .product-image::after,
+.corporate-products-grid .product-card .product-image::before,
+.corporate-products-grid .product-card .product-image::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Image only, no inner spacing, no border area */
+.school-products-grid .product-card .product-image img,
+.corporate-products-grid .product-card .product-image img {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  display: block !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 18px !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* No hover zoom */
+.school-products-grid .product-card:hover .product-image img,
+.corporate-products-grid .product-card:hover .product-image img {
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Accessories also without outer frame */
+.tie-product-card .product-image,
+.belt-product-card .product-image,
+.sock-product-card .product-image {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+.tie-product-card .product-image img,
+.belt-product-card .product-image img,
+.sock-product-card .product-image img {
+  padding: 0 !important;
+  background: transparent !important;
+}
