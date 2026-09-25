@@ -1950,221 +1950,50 @@
 
 
 
-  /* ===== EQUAL CATALOGUE CARD SYSTEM ===== */
-  /* Same visual size for every School + Corporate product card.
-     Photos keep their real proportions: no crop, no stretch. */
-
-  .school-products-grid,
-  .corporate-products-grid {
-    align-items: stretch !important;
-  }
-
-  .school-products-grid .product-card,
-  .corporate-products-grid .product-card {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-    min-height: 100% !important;
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-  }
-
-  /* One equal frame size across all catalogue images */
-  .school-products-grid .product-card .product-image,
-  .corporate-products-grid .product-card .product-image {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 4 / 5 !important;
-    min-height: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    outline: 0 !important;
-    border-radius: 18px !important;
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-
-  /* Remove any older decorative/fake frame layers */
-  .school-products-grid .product-card .product-image::before,
-  .school-products-grid .product-card .product-image::after,
-  .corporate-products-grid .product-card .product-image::before,
-  .corporate-products-grid .product-card .product-image::after {
-    display: none !important;
-    content: none !important;
-  }
-
-  /* Keep every person/product fully visible and undistorted */
-  .school-products-grid .product-card .product-image img,
-  .corporate-products-grid .product-card .product-image img {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    object-fit: contain !important;
-    object-position: center center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    outline: 0 !important;
-    border-radius: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    transform: none !important;
-  }
-
-  .school-products-grid .product-card:hover .product-image img,
-  .corporate-products-grid .product-card:hover .product-image img {
-    transform: none !important;
-  }
-
-  /* Keep names aligned so cards read as one consistent catalogue */
-  .school-products-grid .product-title,
-  .corporate-products-grid .product-title {
-    min-height: 3.25rem !important;
-    margin: 0 !important;
-    padding: .78rem .12rem .2rem !important;
-    display: flex !important;
-    align-items: flex-start !important;
-  }
-
-  /* Accessories use the same size but retain a clean white product-shot field */
-  .tie-product-card .product-image,
-  .belt-product-card .product-image,
-  .sock-product-card .product-image {
-    aspect-ratio: 4 / 5 !important;
-    background: #fff !important;
-  }
-
-  .tie-product-card .product-image img,
-  .belt-product-card .product-image img,
-  .sock-product-card .product-image img {
-    object-fit: contain !important;
-    padding: .55rem !important;
-    background: #fff !important;
-  }
-
-  @media (max-width:600px) {
-    .school-products-grid .product-card .product-image,
-    .corporate-products-grid .product-card .product-image {
-      border-radius: 14px !important;
-    }
-
-    .school-products-grid .product-title,
-    .corporate-products-grid .product-title {
-      min-height: 2.8rem !important;
-    }
-  }
-
-
-  /* ===== FULL PERSON SAFE FRAME ===== */
-  /* Final catalogue rule: every frame stays equal, while every source image
-     is shown completely inside it with a small safety margin so heads/feet
-     never touch or disappear beyond the frame. */
-
-  .school-products-grid .product-card .product-image,
-  .corporate-products-grid .product-card .product-image {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 4 / 5 !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: 0 !important;
-    outline: 0 !important;
-    border-radius: 18px !important;
-    background: color-mix(in srgb, var(--paper) 96%, var(--surface)) !important;
-    box-shadow: none !important;
-  }
-
-  .school-products-grid .product-card .product-image img,
-  .corporate-products-grid .product-card .product-image img {
-    position: absolute !important;
-    inset: 8px 6px 8px 6px !important;
-    width: calc(100% - 12px) !important;
-    height: calc(100% - 16px) !important;
-    max-width: none !important;
-    max-height: none !important;
-    object-fit: contain !important;
-    object-position: center center !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    outline: 0 !important;
-    border-radius: 12px !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    transform: none !important;
-    filter: none !important;
-  }
-
-  .school-products-grid .product-card:hover .product-image img,
-  .corporate-products-grid .product-card:hover .product-image img {
-    transform: none !important;
-    filter: none !important;
-  }
-
-  /* White accessory presentation, same outside frame dimensions. */
-  .tie-product-card .product-image,
-  .belt-product-card .product-image,
-  .sock-product-card .product-image {
-    background: #fff !important;
-  }
-
-  .tie-product-card .product-image img,
-  .belt-product-card .product-image img,
-  .sock-product-card .product-image img {
-    inset: 12px !important;
-    width: calc(100% - 24px) !important;
-    height: calc(100% - 24px) !important;
-    object-fit: contain !important;
-    background: #fff !important;
-  }
-
-  @media (max-width:600px) {
-    .school-products-grid .product-card .product-image,
-    .corporate-products-grid .product-card .product-image {
-      border-radius: 14px !important;
-    }
-
-    .school-products-grid .product-card .product-image img,
-    .corporate-products-grid .product-card .product-image img {
-      inset: 6px 4px 6px 4px !important;
-      width: calc(100% - 8px) !important;
-      height: calc(100% - 12px) !important;
-      border-radius: 10px !important;
-    }
-  }
-
-
-  /* ===== FILTER + COMPLETE FRAME FIX ===== */
-
-  /* Filtering must beat the catalogue card display:flex !important rule. */
+  /* ===== FINAL CATALOGUE IMAGE + FILTER RULES ===== */
+  /* Filters use a class so !important layout rules cannot keep hidden cards visible. */
   .school-products-grid .product-card.is-filtered-out,
   .corporate-products-grid .product-card.is-filtered-out {
     display: none !important;
   }
 
-  /* One complete rounded rectangle behind every catalogue photo.
-     The image stays fully visible inside it; the frame itself is always complete. */
+  /* Card layout stays clean and borderless. */
+  .school-products-grid,
+  .corporate-products-grid {
+    align-items: start !important;
+  }
+
+  .school-products-grid .product-card,
+  .corporate-products-grid .product-card {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  /* IMPORTANT: let the actual source image define its height.
+     This guarantees the whole model is visible — no head/feet crop and no stretching. */
   .school-products-grid .product-card .product-image,
   .corporate-products-grid .product-card .product-image {
     position: relative !important;
     width: 100% !important;
-    aspect-ratio: 4 / 5 !important;
-    overflow: hidden !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    display: block !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
     border: 0 !important;
     outline: 0 !important;
-    border-radius: 20px !important;
-    background: var(--surface-2) !important;
-    box-shadow: 0 10px 24px rgba(60,35,29,.10) !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
   }
 
   .school-products-grid .product-card .product-image::before,
@@ -2177,18 +2006,22 @@
 
   .school-products-grid .product-card .product-image img,
   .corporate-products-grid .product-card .product-image img {
-    position: absolute !important;
-    inset: 0 !important;
+    position: relative !important;
+    inset: auto !important;
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
     object-fit: contain !important;
-    object-position: center center !important;
-    padding: 8px !important;
+    object-position: center top !important;
+    display: block !important;
     margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
     border: 0 !important;
     outline: 0 !important;
-    border-radius: 20px !important;
-    background: transparent !important;
+    border-radius: 18px !important;
     box-shadow: none !important;
     transform: none !important;
     filter: none !important;
@@ -2200,82 +2033,33 @@
     filter: none !important;
   }
 
-  /* Accessories keep a white completed frame. */
-  .tie-product-card .product-image,
-  .belt-product-card .product-image,
-  .sock-product-card .product-image {
-    background: #fff !important;
-  }
-
-  @media (max-width:600px) {
-    .school-products-grid .product-card .product-image,
-    .corporate-products-grid .product-card .product-image,
-    .school-products-grid .product-card .product-image img,
-    .corporate-products-grid .product-card .product-image img {
-      border-radius: 15px !important;
-    }
-  }
-
-
-  /* ===== BORDERLESS CATALOGUE IMAGE FIX ===== */
-  /* Keep the equal 4:5 layout but make the frame itself completely invisible. */
-  .school-products-grid .product-card .product-image,
-  .corporate-products-grid .product-card .product-image {
-    background: transparent !important;
-    border: 0 !important;
-    outline: 0 !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-  }
-
-  .school-products-grid .product-card .product-image::before,
-  .school-products-grid .product-card .product-image::after,
-  .corporate-products-grid .product-card .product-image::before,
-  .corporate-products-grid .product-card .product-image::after {
-    display: none !important;
-    content: none !important;
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-  }
-
-  .school-products-grid .product-card .product-image img,
-  .corporate-products-grid .product-card .product-image img {
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    padding: 0 !important;
+  /* Keep titles neat without imposing a crop-producing image frame. */
+  .school-products-grid .product-title,
+  .corporate-products-grid .product-title {
+    min-height: 0 !important;
+    height: auto !important;
     margin: 0 !important;
-    border: 0 !important;
-    outline: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    object-fit: contain !important;
-    object-position: center center !important;
+    padding: .72rem .12rem .28rem !important;
+    display: block !important;
   }
 
-  .school-products-grid .product-card,
-  .corporate-products-grid .product-card {
-    background: transparent !important;
-    border: 0 !important;
-    outline: 0 !important;
-    box-shadow: none !important;
-  }
-
-  /* Accessories also have no outer frame/background. */
+  /* Accessory product shots remain uncropped too. */
   .tie-product-card .product-image,
   .belt-product-card .product-image,
-  .sock-product-card .product-image {
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-  }
-
+  .sock-product-card .product-image,
   .tie-product-card .product-image img,
   .belt-product-card .product-image img,
   .sock-product-card .product-image img {
     background: transparent !important;
-    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  @media (max-width:600px) {
+    .school-products-grid .product-card .product-image img,
+    .corporate-products-grid .product-card .product-image img {
+      border-radius: 14px !important;
+    }
   }
 </style>
 
@@ -6906,42 +6690,48 @@
   function filterSchoolProducts(category) {
     const cards = document.querySelectorAll('.school-products-grid .product-card');
     const tabs = document.querySelectorAll('#page-school-uniforms .filter-tab');
+    const count = document.querySelector('.school-count');
 
-    // Accessories opens its category menu and preselects Ties instead of showing everything.
-    if (category === 'accessories') {
-      category = 'ties';
-    }
+    // Accessories opens on Ties while keeping the main Accessories tab highlighted.
+    if (category === 'accessories') category = 'ties';
 
-    // Update active tab
     tabs.forEach(tab => {
-      tab.classList.remove('active');
       const tabFilter = tab.getAttribute('data-filter');
-      if (tabFilter === category || (tabFilter === 'accessories' && (category === 'ties' || category === 'belts' || category === 'socks'))) {
-        tab.classList.add('active');
-      }
+      const active =
+        tabFilter === category ||
+        (tabFilter === 'accessories' && ['ties','belts','socks'].includes(category));
+      tab.classList.toggle('active', active);
     });
 
     const accessorySubtabs = document.getElementById('accessory-subtabs');
     if (accessorySubtabs) {
-      accessorySubtabs.style.display = ['ties', 'belts', 'socks'].includes(category) ? 'flex' : 'none';
+      accessorySubtabs.style.display = ['ties','belts','socks'].includes(category) ? 'flex' : 'none';
     }
 
-    // Filter products with a short staggered reveal.
     let revealIndex = 0;
+    let visibleCount = 0;
+
     cards.forEach(card => {
-      const categories = (card.getAttribute('data-category') || '').split(/\s+/);
-      if (category === 'all' || categories.indexOf(category) !== -1) {
-        card.style.display = '';
+      const categories = (card.getAttribute('data-category') || '').split(/\s+/).filter(Boolean);
+      const matches = category === 'all' || categories.includes(category);
+
+      card.classList.toggle('is-filtered-out', !matches);
+
+      if (matches) {
+        visibleCount++;
         card.style.animation = 'none';
         void card.offsetWidth;
         card.style.animation = 'cuCardIn .34s var(--ease) both';
-        card.style.animationDelay = Math.min(revealIndex * 28, 280) + 'ms';
+        card.style.animationDelay = Math.min(revealIndex * 32, 240) + 'ms';
         revealIndex++;
       } else {
-        card.style.display = 'none';
         card.style.animation = 'none';
       }
     });
+
+    if (count) {
+      count.textContent = visibleCount + (visibleCount === 1 ? ' product' : ' products');
+    }
   }
 
   /* Filter Functions for Corporate Uniforms */
@@ -6981,19 +6771,32 @@
   const schoolSearch = document.getElementById('school-search');
   if (schoolSearch) {
     schoolSearch.addEventListener('input', function() {
-      const query = this.value.toLowerCase();
+      const query = this.value.toLowerCase().trim();
       const cards = document.querySelectorAll('.school-products-grid .product-card');
+      const activeTab = document.querySelector('#page-school-uniforms .filter-tab.active');
+      let activeCategory = activeTab ? activeTab.getAttribute('data-filter') : 'all';
+      const count = document.querySelector('.school-count');
+
+      // Accessories defaults to Ties.
+      if (activeCategory === 'accessories') activeCategory = 'ties';
+
+      let visibleCount = 0;
 
       cards.forEach(card => {
         const title = card.querySelector('.product-title').textContent.toLowerCase();
         const description = card.querySelector('.product-description').textContent.toLowerCase();
+        const categories = (card.getAttribute('data-category') || '').split(/\s+/).filter(Boolean);
+        const categoryMatch = activeCategory === 'all' || categories.includes(activeCategory);
+        const searchMatch = !query || title.includes(query) || description.includes(query);
+        const show = categoryMatch && searchMatch;
 
-        if (title.includes(query) || description.includes(query)) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+        card.classList.toggle('is-filtered-out', !show);
+        if (show) visibleCount++;
       });
+
+      if (count) {
+        count.textContent = visibleCount + (visibleCount === 1 ? ' product' : ' products');
+      }
     });
   }
 
