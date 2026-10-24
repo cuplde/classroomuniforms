@@ -1186,23 +1186,7 @@
     font-size: 1rem;
   }
 
-  /* School catalogue: fill the full product-image frame.
-     Accessories intentionally remain contained so product-only PNGs are not cropped. */
-  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card) .product-image {
-    overflow: hidden;
-    background: var(--surface-2);
-  }
-
-  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card) .product-image img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center center !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: block !important;
-    background: transparent !important;
-  }
+  /* Catalogue image sizing is defined once below in FINAL CATALOGUE IMAGE RULES. */
 
   .product-title {
     padding: 1rem 0.8rem;
@@ -1356,13 +1340,18 @@
   }
 
   nav.main-nav {
-    gap:.16rem !important;
+    gap:0 !important;
+    justify-content:flex-start;
     padding:.26rem !important;
     border-radius:18px;
     background:color-mix(in srgb,var(--surface-2) 50%,transparent);
   }
   nav.main-nav button {
-    padding:.6rem .78rem !important;
+    padding:.6rem .56rem !important;
+    margin:0 !important;
+    min-width:0;
+    width:auto;
+    flex:0 0 auto;
     border-radius:13px !important;
     font-size:.82rem !important;
     transition:
@@ -1712,9 +1701,7 @@
     content:none !important;
   }
 
-  .product-image img,
-  #page-school-uniforms .school-products-grid .product-card:not(.tie-product-card):not(.belt-product-card):not(.sock-product-card) .product-image img,
-  #page-corporate-uniforms .corporate-products-grid .product-image img {
+  .product-image img {
     position:relative !important;
     z-index:1 !important;
     width:100% !important;
@@ -1975,8 +1962,7 @@
     overflow: visible !important;
   }
 
-  /* IMPORTANT: let the actual source image define its height.
-     This guarantees the whole model is visible — no head/feet crop and no stretching. */
+  /* Equal-size transparent image spaces align product names without cropping photos. */
   .school-products-grid .product-card .product-image,
   .corporate-products-grid .product-card .product-image {
     position: relative !important;
@@ -1984,7 +1970,7 @@
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
-    aspect-ratio: auto !important;
+    aspect-ratio: 4 / 5 !important;
     display: block !important;
     overflow: visible !important;
     margin: 0 !important;
@@ -1995,6 +1981,10 @@
     border-radius: 0 !important;
     box-shadow: none !important;
   }
+  /* Team photographs are wider than school model portraits. */
+  .corporate-products-grid .product-card .product-image {
+    aspect-ratio: 4 / 3 !important;
+  }
 
   .school-products-grid .product-card .product-image::before,
   .school-products-grid .product-card .product-image::after,
@@ -2004,24 +1994,25 @@
     content: none !important;
   }
 
-  .school-products-grid .product-card .product-image img,
-  .corporate-products-grid .product-card .product-image img {
-    position: relative !important;
-    inset: auto !important;
+  #page-school-uniforms .school-products-grid .product-card .product-image img,
+  #page-corporate-uniforms .corporate-products-grid .product-card .product-image img {
+    position: absolute !important;
+    inset: 0 !important;
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
     min-height: 0 !important;
-    max-height: none !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
     aspect-ratio: auto !important;
     object-fit: contain !important;
-    object-position: center top !important;
+    object-position: center bottom !important;
     display: block !important;
     margin: 0 !important;
     padding: 0 !important;
     background: transparent !important;
     border: 0 !important;
     outline: 0 !important;
-    border-radius: 18px !important;
+    border-radius: 12px !important;
     box-shadow: none !important;
     transform: none !important;
     filter: none !important;
@@ -2084,10 +2075,22 @@
     box-shadow: none;
     overflow: visible;
   }
+  /* Transparent, uniform photographic areas; no clipping, stretching or fake panels. */
+  .home-preview-stage {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    position: relative;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+  #page-home-corporate-ref .home-preview-stage { aspect-ratio: 4 / 3; }
   .home-preview-photo {
     display: block;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: clamp(190px, 20vw, 285px);
+    height: 100%;
     object-fit: contain;
     object-position: center bottom;
     background: transparent;
@@ -2096,9 +2099,6 @@
     box-shadow: none;
     transform: none;
     transition: transform .32s var(--cu-ease-spring);
-  }
-  #page-home-corporate-ref .home-preview-photo {
-    height: clamp(165px, 17vw, 245px);
   }
   .home-preview-card:hover .home-preview-photo {
     transform: translateY(-4px);
@@ -2130,13 +2130,9 @@
   .home-collection-cta { margin-top: 1.3rem !important; }
   @media (max-width: 900px) {
     .home-collection-layout { grid-template-columns: 1fr; gap: 1.55rem; }
-    .home-preview-photo { height: clamp(210px, 36vw, 310px); }
-    #page-home-corporate-ref .home-preview-photo { height: clamp(170px, 29vw, 260px); }
   }
   @media (max-width: 460px) {
     .home-preview-grid { gap: .8rem; }
-    .home-preview-photo { height: clamp(165px, 46vw, 220px); }
-    #page-home-corporate-ref .home-preview-photo { height: clamp(135px, 36vw, 175px); }
     .home-preview-copy { padding-top: .5rem; }
     .home-preview-copy h3 { font-size: .94rem; }
     .home-preview-copy p { font-size: .76rem; }
@@ -2289,7 +2285,9 @@
         <div class="home-collection-media">
           <div class="home-preview-grid">
             <article class="home-preview-card">
-              <img class="home-preview-photo" src="/images/uniforms/school-uniforms/dav/DAV%20SWEATER%20FULL%20SLEEVE.png" alt="Student wearing a navy full-sleeve school sweater with coordinated uniform" loading="lazy" decoding="async">
+              <div class="home-preview-stage">
+                <img class="home-preview-photo" src="/images/uniforms/school-uniforms/dav/DAV%20SWEATER%20FULL%20SLEEVE.png" alt="Student wearing a navy full-sleeve school sweater with coordinated uniform" loading="lazy" decoding="async">
+              </div>
               <div class="home-preview-copy">
                 <span class="home-preview-tag">WINTER WEAR</span>
                 <h3>Winter Uniforms</h3>
@@ -2297,7 +2295,9 @@
               </div>
             </article>
             <article class="home-preview-card">
-              <img class="home-preview-photo" src="/images/uniforms/school-uniforms/summer/premium-summer-shirt/image_11.png" alt="Student modelling the premium summer school shirt" loading="lazy" decoding="async">
+              <div class="home-preview-stage">
+                <img class="home-preview-photo" src="/images/uniforms/school-uniforms/summer/premium-summer-shirt/image_11.png" alt="Student modelling the premium summer school shirt" loading="lazy" decoding="async">
+              </div>
               <div class="home-preview-copy">
                 <span class="home-preview-tag">SUMMER WEAR</span>
                 <h3>Summer Uniforms</h3>
@@ -2348,7 +2348,9 @@
         <div class="home-collection-media">
           <div class="home-preview-grid">
             <article class="home-preview-card">
-              <img class="home-preview-photo" src="/images/uniforms/corporate-uniforms/hospitality/Hospitality.png" alt="Hospitality and hotel staff in professional coordinated uniforms" loading="lazy" decoding="async">
+              <div class="home-preview-stage">
+                <img class="home-preview-photo" src="/images/uniforms/corporate-uniforms/hospitality/Hospitality.png" alt="Hospitality and hotel staff in professional coordinated uniforms" loading="lazy" decoding="async">
+              </div>
               <div class="home-preview-copy">
                 <span class="home-preview-tag">HOSPITALITY</span>
                 <h3>Hotel & Service</h3>
@@ -2356,7 +2358,9 @@
               </div>
             </article>
             <article class="home-preview-card">
-              <img class="home-preview-photo" src="/images/uniforms/corporate-uniforms/healthcare/Diverse%20Healthcare%20Team%20in%20Modern%20Hospital%20Lobby.png" alt="Healthcare staff wearing coordinated clinical uniforms" loading="lazy" decoding="async">
+              <div class="home-preview-stage">
+                <img class="home-preview-photo" src="/images/uniforms/corporate-uniforms/healthcare/Diverse%20Healthcare%20Team%20in%20Modern%20Hospital%20Lobby.png" alt="Healthcare staff wearing coordinated clinical uniforms" loading="lazy" decoding="async">
+              </div>
               <div class="home-preview-copy">
                 <span class="home-preview-tag">HEALTHCARE</span>
                 <h3>Medical & Clinical</h3>
@@ -7079,77 +7083,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
-/* ===== REMOVE FRAME / BORDER COMPLETELY ===== */
-
-/* No outer frame, no background box, no shadow */
-.school-products-grid .product-card .product-image,
-.corporate-products-grid .product-card .product-image {
-  position: relative !important;
-  width: 100% !important;
-  height: auto !important;
-  aspect-ratio: auto !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  outline: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border-radius: 0 !important;
-  overflow: visible !important;
-}
-
-/* Remove the fake frame layers */
-.school-products-grid .product-card .product-image::before,
-.school-products-grid .product-card .product-image::after,
-.corporate-products-grid .product-card .product-image::before,
-.corporate-products-grid .product-card .product-image::after {
-  display: none !important;
-  content: none !important;
-}
-
-/* Image only, no inner spacing, no border area */
-.school-products-grid .product-card .product-image img,
-.corporate-products-grid .product-card .product-image img {
-  position: relative !important;
-  inset: auto !important;
-  width: 100% !important;
-  height: auto !important;
-  max-width: 100% !important;
-  max-height: none !important;
-  object-fit: contain !important;
-  object-position: center top !important;
-  display: block !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  outline: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border-radius: 18px !important;
-  transform: none !important;
-  filter: none !important;
-}
-
-/* No hover zoom */
-.school-products-grid .product-card:hover .product-image img,
-.corporate-products-grid .product-card:hover .product-image img {
-  transform: none !important;
-  filter: none !important;
-}
-
-/* Accessories also without outer frame */
-.tie-product-card .product-image,
-.belt-product-card .product-image,
-.sock-product-card .product-image {
-  background: transparent !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  padding: 0 !important;
-}
-
-.tie-product-card .product-image img,
-.belt-product-card .product-image img,
-.sock-product-card .product-image img {
-  padding: 0 !important;
-  background: transparent !important;
-}
