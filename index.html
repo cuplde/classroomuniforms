@@ -2116,6 +2116,17 @@
   .home-preview-card:hover .home-preview-photo {
     transform: translateX(-50%) translateY(-4px);
   }
+  /* Hospitality group photo has a wider crop than the other previews.
+     Scale its actual bitmap down slightly, with no backdrop or crop. */
+  #page-home-corporate-ref .home-preview-photo.hospitality-photo {
+    max-width: 86%;
+    max-height: 86%;
+  }
+  #page-corporate-uniforms .corporate-products-grid .product-card .product-image img.hospitality-photo {
+    max-width: 86% !important;
+    max-height: 86% !important;
+  }
+
   .home-preview-copy { padding: .75rem .12rem .25rem; }
   .home-preview-tag {
     display: block;
@@ -2363,7 +2374,7 @@
           <div class="home-preview-grid">
             <article class="home-preview-card">
               <div class="home-preview-stage">
-                <img class="home-preview-photo" src="/images/uniforms/corporate-uniforms/hospitality/Hospitality.png" alt="Hospitality and hotel staff in professional coordinated uniforms" loading="lazy" decoding="async">
+                <img class="home-preview-photo hospitality-photo" src="/images/uniforms/corporate-uniforms/hospitality/Hospitality.png" alt="Hospitality and hotel staff in professional coordinated uniforms" loading="lazy" decoding="async">
               </div>
               <div class="home-preview-copy">
                 <span class="home-preview-tag">HOSPITALITY</span>
@@ -3048,7 +3059,7 @@
         <!-- Hospitality Products -->
         <div class="product-card" data-category="hospitality">
           <div class="product-image">
-            <img src="/images/uniforms/corporate-uniforms/hospitality/Hospitality.png" alt="Hospitality and Hotel Team Uniforms">
+            <img class="hospitality-photo" src="/images/uniforms/corporate-uniforms/hospitality/Hospitality.png" alt="Hospitality and Hotel Team Uniforms">
           </div>
           <h3 class="product-title">Hospitality &amp; Hotel Team Uniforms</h3>
           <p class="product-description">Professional hospitality uniforms designed for hotel, restaurant, front-office and service teams, combining a polished guest-facing appearance with coordinated role-specific styling for institutional supply.</p>
