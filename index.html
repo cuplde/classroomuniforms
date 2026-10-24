@@ -2116,13 +2116,22 @@
   .home-preview-card:hover .home-preview-photo {
     transform: translateX(-50%) translateY(-4px);
   }
-  /* Hospitality group photo has a wider crop than the other previews.
-     Scale its actual bitmap down slightly, with no backdrop or crop. */
-  #page-home-corporate-ref .home-preview-photo.hospitality-photo {
+  /* Keep both homepage Corporate previews at the same visible height.
+     The original Hospitality-only reduction caused the unequal top edges.
+     Width stays automatic to preserve the full, unstretched photograph. */
+  #page-home-corporate-ref .home-preview-photo {
+    width: auto;
+    height: 86%;
     max-width: 86%;
     max-height: 86%;
   }
-  #page-corporate-uniforms .corporate-products-grid .product-card .product-image img.hospitality-photo {
+  /* Apply the same paired sizing to the corresponding catalogue photos. */
+  #page-corporate-uniforms .corporate-products-grid
+    .product-card[data-category="hospitality"] .product-image img,
+  #page-corporate-uniforms .corporate-products-grid
+    .product-card[data-category="healthcare"] .product-image img {
+    width: auto !important;
+    height: 86% !important;
     max-width: 86% !important;
     max-height: 86% !important;
   }
