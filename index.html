@@ -1726,26 +1726,7 @@
     filter:saturate(1.025) contrast(1.01) !important;
   }
 
-  /* Accessory PNGs keep a clean, deliberate display area. */
-  .tie-product-card .product-image,
-  .belt-product-card .product-image,
-  .sock-product-card .product-image {
-    aspect-ratio:4 / 5 !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    background:#fff !important;
-    box-shadow:0 9px 24px rgba(60,35,29,.08) !important;
-  }
-  .tie-product-card .product-image img,
-  .belt-product-card .product-image img,
-  .sock-product-card .product-image img {
-    width:100% !important;
-    height:100% !important;
-    object-fit:contain !important;
-    padding:.55rem !important;
-    background:#fff !important;
-  }
+  /* Accessory photos use the same universal transparent stage as other products. */
 
   .product-title {
     position:relative;
@@ -1962,7 +1943,8 @@
     overflow: visible !important;
   }
 
-  /* Equal-size transparent image spaces align product names without cropping photos. */
+  /* Universal product-media dimensions: every catalogue photo occupies the
+     same responsive 4:5 space, whatever its original pixel dimensions. */
   .school-products-grid .product-card .product-image,
   .corporate-products-grid .product-card .product-image {
     position: relative !important;
@@ -1981,10 +1963,6 @@
     border-radius: 0 !important;
     box-shadow: none !important;
   }
-  /* Team photographs are wider than school model portraits. */
-  .corporate-products-grid .product-card .product-image {
-    aspect-ratio: 4 / 3 !important;
-  }
 
   .school-products-grid .product-card .product-image::before,
   .school-products-grid .product-card .product-image::after,
@@ -1994,15 +1972,16 @@
     content: none !important;
   }
 
-  /* Size the actual rendered bitmap, rather than an invisible contain letterbox.
-     Its four rounded corners now follow the photograph at every aspect ratio. */
+  /* Fit each original photo inside the common space. Keep its true proportions,
+     center it in both directions, and round the photo itself (not a beige frame).
+     No cover/fill, width-specific scaling, head crop, or overflow growth. */
   #page-school-uniforms .school-products-grid .product-card .product-image img,
   #page-corporate-uniforms .corporate-products-grid .product-card .product-image img {
     position: absolute !important;
     inset: auto !important;
-    top: auto !important;
+    top: 50% !important;
     right: auto !important;
-    bottom: 0 !important;
+    bottom: auto !important;
     left: 50% !important;
     width: auto !important;
     height: auto !important;
@@ -2012,7 +1991,7 @@
     max-height: 100% !important;
     aspect-ratio: auto !important;
     object-fit: contain !important;
-    object-position: center bottom !important;
+    object-position: center center !important;
     display: block !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -2021,13 +2000,13 @@
     outline: 0 !important;
     border-radius: 16px !important;
     box-shadow: none !important;
-    transform: translateX(-50%) !important;
+    transform: translate(-50%, -50%) !important;
     filter: none !important;
   }
 
   .school-products-grid .product-card:hover .product-image img,
   .corporate-products-grid .product-card:hover .product-image img {
-    transform: translateX(-50%) !important;
+    transform: translate(-50%, -50%) !important;
     filter: none !important;
   }
 
@@ -2091,49 +2070,30 @@
     border: 0;
     box-shadow: none;
   }
-  #page-home-corporate-ref .home-preview-stage { aspect-ratio: 4 / 3; }
+  /* The same 4:5 rule applies to both School and Corporate homepage previews. */
   .home-preview-photo {
     display: block;
     position: absolute;
     inset: auto;
-    top: auto;
+    top: 50%;
     right: auto;
-    bottom: 0;
+    bottom: auto;
     left: 50%;
     width: auto;
     height: auto;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    object-position: center bottom;
+    object-position: center center;
     background: transparent;
     border: 0;
     border-radius: 16px;
     box-shadow: none;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     transition: transform .32s var(--cu-ease-spring);
   }
   .home-preview-card:hover .home-preview-photo {
-    transform: translateX(-50%) translateY(-4px);
-  }
-  /* Keep both homepage Corporate previews at the same visible height.
-     The original Hospitality-only reduction caused the unequal top edges.
-     Width stays automatic to preserve the full, unstretched photograph. */
-  #page-home-corporate-ref .home-preview-photo {
-    width: auto;
-    height: 86%;
-    max-width: 86%;
-    max-height: 86%;
-  }
-  /* Apply the same paired sizing to the corresponding catalogue photos. */
-  #page-corporate-uniforms .corporate-products-grid
-    .product-card[data-category="hospitality"] .product-image img,
-  #page-corporate-uniforms .corporate-products-grid
-    .product-card[data-category="healthcare"] .product-image img {
-    width: auto !important;
-    height: 86% !important;
-    max-width: 86% !important;
-    max-height: 86% !important;
+    transform: translate(-50%, -50%) scale(1.01);
   }
 
   .home-preview-copy { padding: .75rem .12rem .25rem; }
