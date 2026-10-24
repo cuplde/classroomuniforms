@@ -2010,6 +2010,22 @@
     filter: none !important;
   }
 
+  /* Specific Corporate catalogue crops: match the Security card's 4:5 display
+     dimensions. Only Hospitality and Corporate photos fill the existing stage;
+     the other products and the homepage keep their own image treatment. */
+  #page-corporate-uniforms .corporate-products-grid
+    .product-card[data-category="hospitality"] .product-image img,
+  #page-corporate-uniforms .corporate-products-grid
+    .product-card[data-category="corporate"] .product-image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 40% !important;
+    border-radius: 16px !important;
+  }
+
   /* Keep titles neat without imposing a crop-producing image frame. */
   .school-products-grid .product-title,
   .corporate-products-grid .product-title {
