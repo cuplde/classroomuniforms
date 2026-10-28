@@ -2101,7 +2101,7 @@
     border: 0;
     box-shadow: none;
   }
-  /* School homepage previews use a 4:5 stage; Corporate previews use the 6:5 catalogue ratio below. */
+  /* School and Corporate homepage previews share one 4:5 portrait format. */
   .home-preview-photo {
     display: block;
     position: absolute;
@@ -2127,10 +2127,10 @@
     transform: translate(-50%, -50%) scale(1.01);
   }
 
-  /* Match the Corporate catalogue's fixed 6:5 photo display on the homepage.
-     Both Hospitality and Healthcare fully fill equal size rounded stages. */
+  /* Corporate home cards now use the exact same portrait geometry as the
+     School Winter and Summer previews: 4:5, aligned with no landscape cropping. */
   #page-home-corporate-ref .home-preview-stage {
-    aspect-ratio: 6 / 5;
+    aspect-ratio: 4 / 5;
     border-radius: 16px;
     overflow: hidden;
     background: transparent;
@@ -2147,7 +2147,7 @@
     height: 100%;
     max-width: 100%;
     max-height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center center;
     border-radius: 16px;
     transform: none;
@@ -2403,7 +2403,7 @@
           <div class="home-preview-grid">
             <article class="home-preview-card">
               <div class="home-preview-stage">
-                <img class="home-preview-photo hospitality-photo" src="/images/uniforms/corporate-uniforms/hospitality/Hospitality.png" alt="Hospitality and hotel staff in professional coordinated uniforms" loading="lazy" decoding="async">
+                <img class="home-preview-photo hospitality-photo" src="/images/home/home-hospitality-portrait.jpg" alt="Hotel hospitality professional wearing a charcoal waistcoat and maroon tie in a luxury lobby" loading="lazy" decoding="async">
               </div>
               <div class="home-preview-copy">
                 <span class="home-preview-tag">HOSPITALITY</span>
@@ -2413,7 +2413,7 @@
             </article>
             <article class="home-preview-card">
               <div class="home-preview-stage">
-                <img class="home-preview-photo" src="/images/uniforms/corporate-uniforms/healthcare/Diverse%20Healthcare%20Team%20in%20Modern%20Hospital%20Lobby.png" alt="Healthcare staff wearing coordinated clinical uniforms" loading="lazy" decoding="async">
+                <img class="home-preview-photo" src="/images/home/home-healthcare-portrait.jpg" alt="Healthcare professional wearing a white coat over navy scrubs in a clinic" loading="lazy" decoding="async">
               </div>
               <div class="home-preview-copy">
                 <span class="home-preview-tag">HEALTHCARE</span>
