@@ -2158,7 +2158,14 @@
     transform: translateX(-50%);
   }
 
-  .home-preview-copy { padding: .75rem .12rem .25rem; }
+  /* Align every preview caption directly beneath the visible portrait width. */
+  .home-preview-copy {
+    width: 83.333333%;
+    margin-inline: auto;
+    padding: .75rem 0 .25rem;
+    text-align: center;
+    color: var(--ink);
+  }
   .home-preview-tag {
     display: block;
     color: var(--maroon);
@@ -2181,6 +2188,29 @@
     font-size: .84rem;
     line-height: 1.5;
     margin: 0;
+  }
+
+  /* A common colour hierarchy for BOTH School and Corporate homepage previews. */
+  #page-home-school-ref .home-preview-tag,
+  #page-home-corporate-ref .home-preview-tag { color: var(--maroon); }
+  #page-home-school-ref .home-preview-copy h3,
+  #page-home-corporate-ref .home-preview-copy h3 { color: var(--ink); }
+  #page-home-school-ref .home-preview-copy p,
+  #page-home-corporate-ref .home-preview-copy p { color: var(--ink-soft); }
+
+  /* Corporate heading remains together on desktop instead of wrapping after &. */
+  #page-home-corporate-ref .section-head { max-width: none; }
+  #page-home-corporate-ref .section-head h2 {
+    white-space: nowrap;
+    text-wrap: nowrap;
+    color: var(--ink);
+  }
+  #page-home-corporate-ref .section-head p { color: var(--ink-soft); }
+  @media (max-width: 760px) {
+    #page-home-corporate-ref .section-head h2 {
+      white-space: normal;
+      text-wrap: balance;
+    }
   }
   .home-collection-cta { margin-top: 1.3rem !important; }
   @media (max-width: 900px) {
