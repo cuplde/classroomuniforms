@@ -1,0 +1,45 @@
+name: Install updated Process photographs
+on:
+  push:
+    paths:
+      - '.github/workflows/import-process-photos-once.yml'
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download the finalized 1848x851 photos into their existing slots
+        env:
+          STITCHING_PHOTO: 'https://d2jqrm6oza8nb6.cloudfront.net/datasets/121e97c7-36b0-4522-bd12-25b010f82d45.jpg?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiNzEzZDk3ZTM4ODRlOGIxOSIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzQxNzE4N30.EFBWe2vfEhwSlzstv2d_omWBDNsygDGXj-iukgEaNGA'
+          IRONING_PHOTO: 'https://d2jqrm6oza8nb6.cloudfront.net/datasets/ed4d904c-16dd-4888-8952-8756de83f42b.jpg?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiZWM5ODU5NmYxODRhNjVlNCIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzQyMzM0M30.9H0XhC0VyHZ2yW1b120-XMeavqOd91DpAsOe9z1x4Pk'
+        run: |
+          python3 - <<'PY'
+          import os
+          import pathlib
+          import struct
+          import urllib.request
+          pairs = [
+              ('STITCHING_PHOTO', 'images/process/stitching-assembly/step-03-stitching-assembly.jpg'),
+              ('IRONING_PHOTO', 'images/process/ironing/step-05-ironing.jpg'),
+          ]
+          for variable, destination in pairs:
+              request = urllib.request.Request(os.environ[variable], headers={'User-Agent': 'ClassroomUniforms-PhotoImporter/1.0'})
+              with urllib.request.urlopen(request, timeout=40) as response:
+                  data = response.read()
+              if not data.startswith(b'\xff\xd8\xff') or not data.endswith(b'\xff\xd9') or len(data) < 90000:
+                  raise RuntimeError('Received an invalid JPEG for ' + destination)
+              path = pathlib.Path(destination)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_bytes(data)
+              print('Wrote', destination, len(data), 'bytes')
+          PY
+      - name: Commit only the two replacement images
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'images/process/stitching-assembly/step-03-stitching-assembly.jpg' 'images/process/ironing/step-05-ironing.jpg'
+          git diff --cached --quiet || git commit -m 'Update Process Stitching and Ironing photos to matching maroon and checked theme'
+          git push
