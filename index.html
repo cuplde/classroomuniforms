@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1039,18 +1039,6 @@
     }
   }
 
-  .theme-toggle {
-    border: 1px solid var(--line);
-    background: var(--surface);
-    color: var(--ink);
-    width: 36px; height: 36px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; flex: none;
-    transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
-  }
-  .theme-toggle:hover { border-color: var(--brass); transform: translateY(-1px); }
-  .theme-toggle svg { transition: transform 0.45s var(--ease); }
-
   /* About section paragraph sizing */
   .about-copy p {
     font-size: 0.95rem;
@@ -1382,14 +1370,12 @@
   }
   .nav-indicator { display:none !important; }
 
-  .theme-toggle,
   .nav-toggle {
     border-radius:14px !important;
     background:var(--surface) !important;
     box-shadow:0 6px 14px rgba(60,35,29,.06);
     transition:transform .26s var(--cu-ease-spring), box-shadow .2s ease !important;
   }
-  .theme-toggle:hover,
   .nav-toggle:hover {
     transform:translateY(-3px) rotate(4deg);
     box-shadow:0 10px 20px rgba(98,42,47,.12);
@@ -2244,19 +2230,16 @@
 
     <nav class="main-nav" id="main-nav">
       <button data-nav="home">Home</button>
-      <button data-nav="about">About</button>
       <button data-nav="process">Process</button>
       <button data-nav="school-uniforms">School Uniforms</button>
       <button data-nav="corporate-uniforms">Corporate Uniforms</button>
       <button data-nav="catalogue">Catalogue</button>
-      <button data-nav="contact">Contact</button>
+      <button data-nav="about">About Us</button>
+      <button data-nav="contact">Contact Us</button>
       <span class="nav-indicator" id="nav-indicator"></span>
     </nav>
 
     <div style="display:flex; align-items:center; gap:0.6rem;">
-      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
-        <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
-      </button>
       <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
@@ -6563,7 +6546,7 @@
         <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--maroon); margin-bottom: 1.2rem; font-family: 'Archivo', sans-serif;">Explore</div>
         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem;">
           <li><button data-nav="home" style="background: none; border: none; color: var(--ink-soft); cursor: pointer; font-size: 0.9rem; padding: 0; font-family: 'Archivo', sans-serif; display: flex; align-items: center; gap: 0.5rem;">Home <span style="color: var(--maroon);">›</span></button></li>
-          <li><button data-nav="about" style="background: none; border: none; color: var(--ink-soft); cursor: pointer; font-size: 0.9rem; padding: 0; font-family: 'Archivo', sans-serif; display: flex; align-items: center; gap: 0.5rem;">About <span style="color: var(--maroon);">›</span></button></li>
+          <li><button data-nav="about" style="background: none; border: none; color: var(--ink-soft); cursor: pointer; font-size: 0.9rem; padding: 0; font-family: 'Archivo', sans-serif; display: flex; align-items: center; gap: 0.5rem;">About Us <span style="color: var(--maroon);">›</span></button></li>
           <li><button data-nav="process" style="background: none; border: none; color: var(--ink-soft); cursor: pointer; font-size: 0.9rem; padding: 0; font-family: 'Archivo', sans-serif; display: flex; align-items: center; gap: 0.5rem;">Process <span style="color: var(--maroon);">›</span></button></li>
           <li><button data-nav="school-uniforms" style="background: none; border: none; color: var(--ink-soft); cursor: pointer; font-size: 0.9rem; padding: 0; font-family: 'Archivo', sans-serif; display: flex; align-items: center; gap: 0.5rem;">School Uniforms <span style="color: var(--maroon);">›</span></button></li>
           <li><button data-nav="corporate-uniforms" style="background: none; border: none; color: var(--ink-soft); cursor: pointer; font-size: 0.9rem; padding: 0; font-family: 'Archivo', sans-serif; display: flex; align-items: center; gap: 0.5rem;">Corporate Uniforms <span style="color: var(--maroon);">›</span></button></li>
@@ -6675,29 +6658,6 @@
       var nav = document.getElementById('main-nav');
       var open = nav.classList.toggle('open');
       this.setAttribute('aria-expanded', open);
-    });
-
-    var themeToggle = document.getElementById('theme-toggle');
-    var root = document.documentElement;
-    function applyTheme(t) {
-      if (t) { root.setAttribute('data-theme', t); }
-      else { root.removeAttribute('data-theme'); }
-    }
-    try {
-      var saved = localStorage.getItem('cu-theme') || 'light';
-      applyTheme(saved);
-    } catch (e) {}
-    var themeIcon = document.getElementById('theme-icon');
-    var iconTurns = 0;
-    themeToggle.addEventListener('click', function () {
-      var current = root.getAttribute('data-theme');
-      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var effectiveDark = current ? current === 'dark' : prefersDark;
-      var next = effectiveDark ? 'light' : 'dark';
-      applyTheme(next);
-      try { localStorage.setItem('cu-theme', next); } catch (e) {}
-      iconTurns += 180;
-      if (themeIcon) themeIcon.style.transform = 'rotate(' + iconTurns + 'deg)';
     });
 
     /* ---------- Hero entrance ---------- */
