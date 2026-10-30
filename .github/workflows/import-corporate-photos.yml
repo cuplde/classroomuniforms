@@ -1,0 +1,57 @@
+name: Import corporate category uniform photos
+on:
+  push:
+    paths:
+      - '.github/workflows/import-corporate-photos.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image conversion package
+        run: python3 -m pip install --user Pillow
+      - name: Import generated catalog assets
+        env:
+          IMG_RETAIL_FASHION: "https://dnznrvs05pmza.cloudfront.net/gemini/gemini-3.1-flash-image/images/ad7b2312-e1e1-4b4e-a0e2-84599c4322c7/6b7ded3e-d59c-4d13-a961-18f90f7723ba/Luxury_fashion_and_department_store_floor__warm_rose_and_bra.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiMDQzYTk5OTA3OTdkZTYzZiIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzUwNjA2NH0._LmgWqEMQ812GLyV528dLxJfk5Sdl-s6B35dJ0qo7fI"
+          IMG_RETAIL_ELECTRONICS: "https://dnznrvs05pmza.cloudfront.net/gemini/gemini-3.1-flash-image/images/56e642e0-7d10-45c1-9bb8-5565de97456c/78920be6-452a-429c-896f-5db309d6cb1a/Bright_modern_electronics_retail_showroom_with_cool_cobalt_a.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiNzExYmJmMmM0MTM2NzJhMSIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzUzMTgyMH0.V7dpRo_gBNeyAeMiwNPs1O0I-SgSOsUd_FDY0iYqUqI"
+          IMG_INDUSTRIAL_PRODUCTION: "https://dnznrvs05pmza.cloudfront.net/gemini/gemini-3.1-flash-image/images/4c841e26-9625-48b5-ae61-b3ce77f79758/9a550647-7f1a-4ff1-9c34-1074b17893af/Sunlit_well_organised_garment_manufacturing_floor_with_texti.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiMjcyNmUzNmI0YTI1MTJhMSIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzQ1MjAxMX0.O19RIs-W_V0dDH4EeEfE4gjirtqkqcRvTZ93C7FQCoM"
+          IMG_INDUSTRIAL_LOGISTICS: "https://dnznrvs05pmza.cloudfront.net/gemini/gemini-3.1-flash-image/images/01248d9c-fe80-4bad-bbb0-b450dcad773e/9ea1ec8c-26f1-4b5e-8e49-2fa9afbee308/Contemporary_distribution_warehouse_loading_logistics_backdr.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiNDY1ZjIzNWZhYzUyODNmZSIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzQ3NTI5NX0.ncqNbQ6tpPY86GWrw1fVfnPc8YVWedX-X_oi_-QlPnw"
+          IMG_FOODSERVICE_RESTAURANT: "https://dnznrvs05pmza.cloudfront.net/gemini/gemini-3.1-flash-image/images/f39a625e-6e04-4df5-b4be-2236f32cfb4c/40e24eee-0d15-4c41-b4ca-38adf15e65a4/Upscale_restaurant_dining_area_with_deep_green_and_walnut_pa.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiZjUyNDFjN2QwYWM0MmNkZSIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzQ2MjkwOX0.7mPs_F5ejqrdcgN8DcCCISkwOi0SSuOSUQX_I9LV4mk"
+          IMG_FOODSERVICE_KITCHEN: "https://dnznrvs05pmza.cloudfront.net/gemini/gemini-3.1-flash-image/images/56bca6df-4260-4a5e-9c39-c9c427a64f22/f4a789c1-a2e3-41ef-ab20-b8c2e4bee2cf/Immaculate_contemporary_commercial_kitchen_with_stainless_co.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiYzBhOWE3YjEwYzI3OWJmYyIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzUyNDc4NX0.Oo6oSh2oj3nm9sFfYEdOMQkNeP6hWNDW8jk8mfSuDY4"
+          IMG_FACILITIES_HOUSEKEEPING: "https://dnznrvs05pmza.cloudfront.net/gemini/gemini-3.1-flash-image/images/9a7a95b0-7894-4e57-97e3-762c44b00d7b/252d74e8-8a58-4582-ae8f-d7a6672165b8/Bright_contemporary_hotel_corridor_with_natural_stone__warm_.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiMDc0MTE4NDc4ZTJmNzliMCIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzQ2MDE2N30.FOdK6lp_QlzZSiGfPVEGW0EbzRZunI2k3XmsQLjxMGU"
+          IMG_FACILITIES_MAINTENANCE: "https://dnznrvs05pmza.cloudfront.net/gemini/gemini-3.1-flash-image/images/6366ee48-40a7-4115-ac3a-6683b17b8af9/3c8de629-c25e-4278-8439-942fb28d7d83/Modern_office_property_facilities_reception_lobby_with_grey_.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiMzE4NjdkYTM0MTBmODIyOCIsImJ1Y2tldCI6InJ1bndheS10YXNrLWFydGlmYWN0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MzQ3OTk3MX0.gVkLpSftDldC3Urj9GaQv_-KOMy3iUGR0yfkXRgYbI0"
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, urllib.request, io
+          from PIL import Image, ImageOps
+          mapping = {
+              "retail-fashion": "images/uniforms/corporate-uniforms/retail/retail-fashion.jpg",
+              "retail-electronics": "images/uniforms/corporate-uniforms/retail/retail-electronics.jpg",
+              "industrial-production": "images/uniforms/corporate-uniforms/industrial/industrial-production.jpg",
+              "industrial-logistics": "images/uniforms/corporate-uniforms/industrial/industrial-logistics.jpg",
+              "foodservice-restaurant": "images/uniforms/corporate-uniforms/foodservice/foodservice-restaurant.jpg",
+              "foodservice-kitchen": "images/uniforms/corporate-uniforms/foodservice/foodservice-kitchen.jpg",
+              "facilities-housekeeping": "images/uniforms/corporate-uniforms/facilities/facilities-housekeeping.jpg",
+              "facilities-maintenance": "images/uniforms/corporate-uniforms/facilities/facilities-maintenance.jpg",
+          }
+          for key, filepath in mapping.items():
+              request=urllib.request.Request(os.environ['IMG_'+key.replace('-','_').upper()], headers={'User-Agent':'Mozilla/5.0'})
+              with urllib.request.urlopen(request, timeout=60) as response: data=response.read()
+              im=Image.open(io.BytesIO(data)).convert('RGB')
+              im=ImageOps.fit(im,(1200,1000),method=Image.Resampling.LANCZOS,centering=(.5,.5))
+              out=pathlib.Path(filepath); out.parent.mkdir(parents=True,exist_ok=True)
+              im.save(out,'JPEG',quality=83,optimize=True,progressive=True)
+              print(key, str(out), out.stat().st_size)
+          PY
+      - name: Commit permanent catalog images
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add images/uniforms/corporate-uniforms/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish eight category photo assets for corporate catalogue'
+            git push origin HEAD:main
+          fi
