@@ -1906,6 +1906,33 @@
 
 
 
+  /* Eight corporate categories: tidy, space-efficient wrapping on desktop. */
+  #page-corporate-uniforms .product-filter-section {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  #page-corporate-uniforms .filter-left { flex: 0 1 260px; min-width: 180px; }
+  #page-corporate-uniforms .filter-right {
+    flex: 1 1 690px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  #page-corporate-uniforms .filter-tabs {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    row-gap: .3rem !important;
+  }
+  #page-corporate-uniforms .filter-tab { white-space: nowrap; }
+  @media (max-width: 860px) {
+    #page-corporate-uniforms .filter-left { flex: 1 1 100%; }
+    #page-corporate-uniforms .filter-right { flex: 1 1 100%; justify-content: flex-start; }
+    #page-corporate-uniforms .filter-tabs {
+      justify-content: flex-start;
+      flex-wrap: nowrap !important;
+      overflow-x: auto;
+    }
+  }
+
   /* ===== FINAL CATALOGUE IMAGE + FILTER RULES ===== */
   /* Filters use a class so !important layout rules cannot keep hidden cards visible. */
   .school-products-grid .product-card.is-filtered-out,
@@ -3133,20 +3160,23 @@
           <input type="text" class="search-input corporate-search" placeholder="Search uniforms..." id="corporate-search">
         </div>
         <div class="filter-right">
-          <div class="product-count corporate-count">8 products</div>
+          <div class="product-count corporate-count">16 products</div>
           <div class="filter-tabs">
             <button class="filter-tab active" data-filter="all" onclick="filterCorporateProducts('all')">All</button>
             <button class="filter-tab" data-filter="hospitality" onclick="filterCorporateProducts('hospitality')">Hospitality</button>
             <button class="filter-tab" data-filter="healthcare" onclick="filterCorporateProducts('healthcare')">Healthcare</button>
             <button class="filter-tab" data-filter="security" onclick="filterCorporateProducts('security')">Security</button>
             <button class="filter-tab" data-filter="corporate" onclick="filterCorporateProducts('corporate')">Corporate</button>
+            <button class="filter-tab" data-filter="retail" onclick="filterCorporateProducts('retail')">Retail &amp; Showroom</button>
+            <button class="filter-tab" data-filter="industrial" onclick="filterCorporateProducts('industrial')">Industrial &amp; Logistics</button>
+            <button class="filter-tab" data-filter="foodservice" onclick="filterCorporateProducts('foodservice')">Food Service &amp; Catering</button>
+            <button class="filter-tab" data-filter="facilities" onclick="filterCorporateProducts('facilities')">Housekeeping &amp; Facilities</button>
           </div>
         </div>
       </div>
 
-      <!-- Products Grid -->
+      <!-- Products Grid: editorial mix of eight uniform categories, never adjacent matches -->
       <div class="products-grid corporate-products-grid grid-3">
-        <!-- Hospitality Products -->
         <div class="product-card" data-category="hospitality">
           <div class="product-image">
             <img class="hospitality-photo" src="/images/uniforms/corporate-uniforms/hospitality/Hospitality.png" alt="Hospitality and Hotel Team Uniforms">
@@ -3155,21 +3185,68 @@
           <p class="product-description">Professional hospitality uniforms designed for hotel, restaurant, front-office and service teams, combining a polished guest-facing appearance with coordinated role-specific styling for institutional supply.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="hospitality">
+        <div class="product-card" data-category="industrial">
           <div class="product-image">
-            <img src="/images/uniforms/corporate-uniforms/hospitality/hospitality-service-team-02-20261030.jpg" alt="Four hotel service professionals modelling different hospitality uniforms" loading="lazy" decoding="async">
+            <img src="/images/uniforms/corporate-uniforms/industrial/industrial-production.jpg" alt="Four distinct manufacturing employees in varied industrial workwear" loading="lazy" decoding="async">
           </div>
-          <h3 class="product-title">Hospitality Service & Front Desk Team</h3>
-          <p class="product-description">Coordinated guest-facing hotel, concierge and front-office uniforms, including tailored suits, formal jackets and reception sarees for a premium hospitality appearance.</p>
+          <h3 class="product-title">Industrial Manufacturing & Production Staff</h3>
+          <p class="product-description">Functional production-floor uniforms featuring work shirts, light-duty jackets and practical staff apparel suited to factories, workshops and garment manufacturing teams.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <!-- Healthcare Products -->
         <div class="product-card" data-category="healthcare">
           <div class="product-image">
             <img src="/images/uniforms/corporate-uniforms/healthcare/Diverse%20Healthcare%20Team%20in%20Modern%20Hospital%20Lobby.png" alt="Healthcare and Medical Team Uniforms">
           </div>
           <h3 class="product-title">Healthcare &amp; Medical Team Uniforms</h3>
           <p class="product-description">Professional healthcare uniforms designed for doctors, nurses, clinical teams and support staff, with a clean coordinated appearance suited to hospitals, clinics and medical institutions.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="retail">
+          <div class="product-image">
+            <img src="/images/uniforms/corporate-uniforms/retail/retail-fashion.jpg" alt="Four individual showroom staff modelling different tailored retail uniforms" loading="lazy" decoding="async">
+          </div>
+          <h3 class="product-title">Fashion Retail & Showroom Staff</h3>
+          <p class="product-description">A coordinated retail collection for fashion showrooms and department stores, featuring tailored blazers, crisp service shirts, contemporary polos and customer-facing styling in warm, refined colours.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="security">
+          <div class="product-image">
+            <img src="/images/uniforms/corporate-uniforms/security/Professional%20Security%20Team%20at%20Modern%20Entrance%20%281%29.png" alt="Professional Security Team Uniforms">
+          </div>
+          <h3 class="product-title">Professional Security Team Uniforms</h3>
+          <p class="product-description">Structured security uniforms created for a disciplined, identifiable and professional team appearance across commercial buildings, institutions, campuses and facility-management operations.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="foodservice">
+          <div class="product-image">
+            <img src="/images/uniforms/corporate-uniforms/foodservice/foodservice-restaurant.jpg" alt="Four restaurant front-of-house employees wearing different uniforms" loading="lazy" decoding="async">
+          </div>
+          <h3 class="product-title">Restaurant Service & Guest Experience Team</h3>
+          <p class="product-description">Professional restaurant and dining-service uniforms with refined waistcoats, coordinated aprons, host attire and flexible servicewear designed for polished guest-facing teams.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="corporate">
+          <div class="product-image">
+            <img src="/images/uniforms/corporate-uniforms/corporate/corporate.png" alt="Corporate Office Team Uniforms">
+          </div>
+          <h3 class="product-title">Corporate Office Team Uniforms</h3>
+          <p class="product-description">Contemporary corporate uniforms created for offices, reception teams and professional staff, with coordinated colours, clean tailoring and custom branding options for a consistent company-wide presentation.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="facilities">
+          <div class="product-image">
+            <img src="/images/uniforms/corporate-uniforms/facilities/facilities-housekeeping.jpg" alt="Four housekeeping and maintenance professionals in different coloured uniforms" loading="lazy" decoding="async">
+          </div>
+          <h3 class="product-title">Housekeeping & Guest Services Staff</h3>
+          <p class="product-description">Neat, comfortable housekeeping uniforms for hotel rooms, guest services and everyday cleaning operations, paired with practical maintenance and support staff apparel.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="retail">
+          <div class="product-image">
+            <img src="/images/uniforms/corporate-uniforms/retail/retail-electronics.jpg" alt="Four electronics showroom specialists in varied blue and cream retail uniforms" loading="lazy" decoding="async">
+          </div>
+          <h3 class="product-title">Electronics Showroom & Sales Team</h3>
+          <p class="product-description">Smart sales and service apparel for modern electronics stores, combining blue-toned polos, formal shirts and professional reception uniforms for confident customer engagement.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
         <div class="product-card" data-category="healthcare">
@@ -3180,30 +3257,28 @@
           <p class="product-description">Comfortable medical coats, coordinated scrubs and hospital support-staff wear for doctors, nurses and clinical teams, designed for professional institutional use.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <!-- Security Products -->
-        <div class="product-card" data-category="security">
+        <div class="product-card" data-category="industrial">
           <div class="product-image">
-            <img src="/images/uniforms/corporate-uniforms/security/Professional%20Security%20Team%20at%20Modern%20Entrance%20%281%29.png" alt="Professional Security Team Uniforms">
+            <img src="/images/uniforms/corporate-uniforms/industrial/industrial-logistics.jpg" alt="Four different warehouse operations professionals in distinct uniform styles" loading="lazy" decoding="async">
           </div>
-          <h3 class="product-title">Professional Security Team Uniforms</h3>
-          <p class="product-description">Structured security uniforms created for a disciplined, identifiable and professional team appearance across commercial buildings, institutions, campuses and facility-management operations.</p>
+          <h3 class="product-title">Warehouse & Logistics Operations Team</h3>
+          <p class="product-description">Durable warehouse workwear featuring easy-movement utility trousers, coordinated operations shirts and high-visibility layers for distribution, dispatch and material handling teams.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <div class="product-card" data-category="security">
+        <div class="product-card" data-category="hospitality">
           <div class="product-image">
-            <img src="/images/uniforms/corporate-uniforms/security/security-team-02-20261030.jpg" alt="Four different security professionals wearing formal, supervisory and field security uniforms" loading="lazy" decoding="async">
+            <img src="/images/uniforms/corporate-uniforms/hospitality/hospitality-service-team-02-20261030.jpg" alt="Four hotel service professionals modelling different hospitality uniforms" loading="lazy" decoding="async">
           </div>
-          <h3 class="product-title">Security Officers &amp; Facility Team Collection</h3>
-          <p class="product-description">Versatile front-desk, surveillance, supervisory and field security uniforms in coordinated navy, light-blue and black designs, tailored for professional facility and institutional teams.</p>
+          <h3 class="product-title">Hospitality Service & Front Desk Team</h3>
+          <p class="product-description">Coordinated guest-facing hotel, concierge and front-office uniforms, including tailored suits, formal jackets and reception sarees for a premium hospitality appearance.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
-        <!-- Corporate Products -->
-        <div class="product-card" data-category="corporate">
+        <div class="product-card" data-category="facilities">
           <div class="product-image">
-            <img src="/images/uniforms/corporate-uniforms/corporate/corporate.png" alt="Corporate Office Team Uniforms">
+            <img src="/images/uniforms/corporate-uniforms/facilities/facilities-maintenance.jpg" alt="Four distinct property facilities workers in different uniform styles" loading="lazy" decoding="async">
           </div>
-          <h3 class="product-title">Corporate Office Team Uniforms</h3>
-          <p class="product-description">Contemporary corporate uniforms created for offices, reception teams and professional staff, with coordinated colours, clean tailoring and custom branding options for a consistent company-wide presentation.</p>
+          <h3 class="product-title">Facility Maintenance & Support Staff</h3>
+          <p class="product-description">Coordinated uniforms for property-management, technical maintenance, cleaning and building-support teams, balancing tidy presentation with everyday workwear practicality.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
         <div class="product-card" data-category="corporate">
@@ -3212,6 +3287,22 @@
           </div>
           <h3 class="product-title">Modern Office &amp; Reception Uniforms</h3>
           <p class="product-description">A flexible corporate wardrobe with tailored blazers, formal shirts, coordinated trousers and polished reception wear, ideal for office teams and customer-facing staff.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="foodservice">
+          <div class="product-image">
+            <img src="/images/uniforms/corporate-uniforms/foodservice/foodservice-kitchen.jpg" alt="Four different chefs and catering supervisors dressed in varied kitchen uniforms" loading="lazy" decoding="async">
+          </div>
+          <h3 class="product-title">Commercial Kitchen & Catering Crew</h3>
+          <p class="product-description">Kitchen-ready uniforms featuring chef coats, tailored aprons and practical catering service attire for professional culinary, hospitality and institutional food-preparation teams.</p>
+          <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
+        </div>
+        <div class="product-card" data-category="security">
+          <div class="product-image">
+            <img src="/images/uniforms/corporate-uniforms/security/security-team-02-20261030.jpg" alt="Four different security professionals wearing formal, supervisory and field security uniforms" loading="lazy" decoding="async">
+          </div>
+          <h3 class="product-title">Security Officers &amp; Facility Team Collection</h3>
+          <p class="product-description">Versatile front-desk, surveillance, supervisory and field security uniforms in coordinated navy, light-blue and black designs, tailored for professional facility and institutional teams.</p>
           <a href="#" class="view-details" onclick="showProductDetail(event)">View Details →</a>
         </div>
       </div>
@@ -6959,38 +7050,42 @@
     renderSchoolProducts(true);
   }
 
-  /* Filter Functions for Corporate Uniforms */
-  function filterCorporateProducts(category) {
+  /* A single filter/search state keeps category tabs and counts in sync. */
+  let activeCorporateFilter = 'all';
+  function renderCorporateProducts(animate = false) {
     const cards = document.querySelectorAll('.corporate-products-grid .product-card');
-    const tabs = document.querySelectorAll('#page-corporate-uniforms .filter-tab');
     const count = document.querySelector('.corporate-count');
-
-    tabs.forEach(tab => {
-      tab.classList.toggle('active', tab.getAttribute('data-filter') === category);
-    });
-
-    let revealIndex = 0;
+    const query = (document.getElementById('corporate-search')?.value || '').toLowerCase().trim();
     let visibleCount = 0;
-
     cards.forEach(card => {
-      const matches = category === 'all' || card.getAttribute('data-category') === category;
-      card.classList.toggle('is-filtered-out', !matches);
-
-      if (matches) {
-        visibleCount++;
+      const title = (card.querySelector('.product-title')?.textContent || '').toLowerCase();
+      const description = (card.querySelector('.product-description')?.textContent || '').toLowerCase();
+      const matchesCategory = activeCorporateFilter === 'all' || card.getAttribute('data-category') === activeCorporateFilter;
+      const matchesSearch = !query || title.includes(query) || description.includes(query);
+      const visible = matchesCategory && matchesSearch;
+      card.classList.toggle('is-filtered-out', !visible);
+      if (!visible) {
         card.style.animation = 'none';
-        void card.offsetWidth;
-        card.style.animation = 'cuCardIn .34s var(--ease) both';
-        card.style.animationDelay = Math.min(revealIndex * 40, 180) + 'ms';
-        revealIndex++;
       } else {
-        card.style.animation = 'none';
+        if (animate) {
+          card.style.animation = 'none';
+          void card.offsetWidth;
+          card.style.animation = 'cuCardIn .34s var(--ease) both';
+          card.style.animationDelay = Math.min(visibleCount * 28, 200) + 'ms';
+        }
+        visibleCount++;
       }
     });
-
-    if (count) {
-      count.textContent = visibleCount + (visibleCount === 1 ? ' product' : ' products');
-    }
+    if (count) count.textContent = visibleCount + (visibleCount === 1 ? ' product' : ' products');
+  }
+  function filterCorporateProducts(category) {
+    activeCorporateFilter = category;
+    document.querySelectorAll('#page-corporate-uniforms .filter-tab').forEach(tab => {
+      const selected = tab.getAttribute('data-filter') === category;
+      tab.classList.toggle('active', selected);
+      tab.setAttribute('aria-pressed', String(selected));
+    });
+    renderCorporateProducts(true);
   }
   /* Search respects the selected School category, including Belts and Socks. */
   const schoolSearch = document.getElementById('school-search');
@@ -6998,34 +7093,9 @@
     schoolSearch.addEventListener('input', () => renderSchoolProducts());
   }
 
-  /* Search functionality for Corporate Uniforms */
+  /* Search combines with whichever Corporate category is active. */
   const corporateSearch = document.getElementById('corporate-search');
-  if (corporateSearch) {
-    corporateSearch.addEventListener('input', function() {
-      const query = this.value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.corporate-products-grid .product-card');
-      const activeTab = document.querySelector('#page-corporate-uniforms .filter-tab.active');
-      const activeCategory = activeTab ? activeTab.getAttribute('data-filter') : 'all';
-      const count = document.querySelector('.corporate-count');
-      let visibleCount = 0;
-
-      cards.forEach(card => {
-        const title = card.querySelector('.product-title').textContent.toLowerCase();
-        const description = card.querySelector('.product-description').textContent.toLowerCase();
-        const category = card.getAttribute('data-category');
-        const categoryMatch = activeCategory === 'all' || category === activeCategory;
-        const searchMatch = !query || title.includes(query) || description.includes(query);
-        const show = categoryMatch && searchMatch;
-
-        card.classList.toggle('is-filtered-out', !show);
-        if (show) visibleCount++;
-      });
-
-      if (count) {
-        count.textContent = visibleCount + (visibleCount === 1 ? ' product' : ' products');
-      }
-    });
-  }
+  if (corporateSearch) corporateSearch.addEventListener('input', () => renderCorporateProducts());
 
   </script>
 
